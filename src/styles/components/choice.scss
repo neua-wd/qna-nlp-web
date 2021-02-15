@@ -1,0 +1,19 @@
+.choice {
+  margin: 20px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 60px 30px 60px 30px;
+  width: 200px;
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &--correct {
+    background-color: #d8ffc4;
+  }
+
+  &--incorrect {
+    background-color: #ffc7c7;
+  }
+}
