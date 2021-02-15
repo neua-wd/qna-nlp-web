@@ -1,14 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Overview from './screens/Overview';
+import Routes from './Routes';
 
 function App() {
-  return (
-    <Router>
-      <Overview />
-    </Router>
-  );
+  return <Routes />;
 }
 
 export default App;
