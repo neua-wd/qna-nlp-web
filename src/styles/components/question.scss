@@ -1,0 +1,12 @@
+.question {
+  display: flex;
+  justify-content: center;
+  margin: 50px 50px 20px 50px;
+  padding: 20px;
+  background-color: #d4d4d4;
+  border-radius: 6px;
+
+  &__title {
+    font-weight: bold;
+  }
+}
