@@ -4,7 +4,6 @@ import axios from 'axios';
 import Question from '../../components/Question';
 import Choices from '../../components/Choices';
 import Explanation from '../../components/Explanation';
-import SeeHowLink from '../../components/SeeHowLink';
 
 import '../../styles/screens/overview.scss';
 
@@ -29,7 +28,6 @@ const Overview = () => {
       <Question question={overview.question} />
       <Choices choices={overview.choices} answer={overview.answer} />
       <Explanation facts={overview.explanation} />
-      <SeeHowLink />
     </div>
   );
 };
