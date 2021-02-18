@@ -1,0 +1,25 @@
+.question-form {
+  &__input {
+    width: 800px;
+    height: 30px;
+    font-size: large;
+    padding: 5px;
+    margin: 15px;
+    border-color: #dbdbdb;
+    border-width: thin;
+    border-radius: 6px;
+    border-style: solid;
+  }
+
+  &__button {
+    padding: 12px;
+    border: 0;
+    border-radius: 6px;
+    background-color: #dbdbdb;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #969696;
+    }
+  }
+}
