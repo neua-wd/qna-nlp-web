@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../../../styles/components/choice.scss';
 
 // A Choice component includes the letter (ie. A/B/C/D) and the sentence
@@ -22,9 +23,13 @@ const Choice = ({ letter, sentence, correct }) => {
     );
   } else {
     return (
-      <div className="choice choice__see-details" onMouseLeave={handleHover}>
+      <Link
+        to="/details"
+        className="choice choice__see-details"
+        onMouseLeave={handleHover}
+      >
         <div className="choice__see-details--text">See Details ...</div>
-      </div>
+      </Link>
     );
   }
 };
