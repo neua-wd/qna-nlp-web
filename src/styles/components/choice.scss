@@ -9,6 +9,18 @@
     font-weight: bold;
   }
 
+  &__see-details {
+    color: white;
+    font-size: large;
+    background-color: #587bed;
+    cursor: pointer;
+
+    &--text {
+      text-align: center;
+      height: 50px;
+    }
+  }
+
   &--correct {
     background-color: #d8ffc4;
   }
