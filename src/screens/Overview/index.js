@@ -18,8 +18,6 @@ const Overview = props => {
 
   const getOverview = async () => {
     const res = await axios.get('/overview/' + props.match.params.id);
-    console.log('getOverview');
-    console.log(res);
     setOverview(res.data);
   };
 
