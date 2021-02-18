@@ -9,7 +9,7 @@ import '../../styles/screens/overview.scss';
 
 // The Overview screen contains the overview of a particular question
 // Includes the question the choices and the explanation
-const Overview = () => {
+const Overview = props => {
   useEffect(() => {
     getOverview();
   }, []);
@@ -17,7 +17,7 @@ const Overview = () => {
   const [overview, setOverview] = useState([]);
 
   const getOverview = async () => {
-    const res = await axios.get('/overview');
+    const res = await axios.get('/overview/' + props.match.params.id);
     console.log('getOverview');
     console.log(res);
     setOverview(res.data);
