@@ -33,7 +33,7 @@ const Overview = props => {
         <div>
           <Question question={overview.question} />
           <Choices choices={overview.choices} answer={overview.answer} />
-          <Explanation facts={overview.explanation} />
+          <Explanation explanation={overview.explanation} />
         </div>
       )}
     </div>
