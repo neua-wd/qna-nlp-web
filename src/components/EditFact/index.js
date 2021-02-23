@@ -60,6 +60,7 @@ const EditFact = ({
                         name={pos}
                         value={text}
                         onChange={handleChange}
+                        autocomplete="off"
                       ></input>
                     </li>
                   </ul>
