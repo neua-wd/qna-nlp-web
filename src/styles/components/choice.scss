@@ -2,23 +2,11 @@
   margin: 20px;
   text-align: center;
   border-radius: 6px;
-  padding: 60px 30px 60px 30px;
+  padding: 20px;
   width: 200px;
 
   &__title {
     font-weight: bold;
-  }
-
-  &__see-details {
-    color: white;
-    font-size: large;
-    background-color: #587bed;
-    cursor: pointer;
-
-    &--text {
-      text-align: center;
-      height: 50px;
-    }
   }
 
   &--correct {
@@ -26,6 +14,7 @@
   }
 
   &--incorrect {
+    opacity: 0.6;
     background-color: #ffc7c7;
   }
 }

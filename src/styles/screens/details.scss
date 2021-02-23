@@ -1,0 +1,10 @@
+.details {
+  margin-top: 90px;
+  height: 100%;
+  z-index: 0;
+  align-items: center;
+
+  &--blur {
+    filter: blur(1.5px);
+  }
+}

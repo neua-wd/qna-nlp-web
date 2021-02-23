@@ -15,7 +15,7 @@ const QuestionForm = ({ getOverview }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="question-form">
       <label className="question-form__label">
         <input
           className="question-form__input"

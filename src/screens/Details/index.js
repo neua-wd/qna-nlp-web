@@ -1,21 +1,28 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-
 import Question from '../../components/Question';
+import Facts from '../../components/Facts';
+import EditFact from '../../components/EditFact';
 
-const Details = () => {
-  useEffect(() => {
-    getDetails();
-  }, []);
+import '../../styles/screens/details.scss';
+import { useState } from 'react';
 
-  const [details, setDetails] = useState([]);
-
-  const getDetails = async () => {
-    const res = await axios.get('/details');
-    setDetails(res.data);
+const Details = ({ overview, editing_fact, setEditingFact, blurred }) => {
+  const handleClick = () => {
+    if (editing_fact) setEditingFact(null);
   };
 
-  return <Question question={details.question} />;
+  return (
+    <div
+      className={`details ${blurred ? 'details--blur' : ''}`}
+      onClick={handleClick}
+    >
+      {overview && (
+        <div className={`details ${blurred ? 'details--blur' : ''}`}>
+          <Question question={overview.question} />
+          <Facts facts={overview.explanation} setEditingFact={setEditingFact} />
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Details;
