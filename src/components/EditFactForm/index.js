@@ -3,22 +3,21 @@ import axios from 'axios';
 
 import '../../styles/components/facts.scss';
 
-const EditFact = ({
-  fact,
-  index,
+const EditFactForm = ({
   overview,
   setOverview,
+  editing_fact,
   setEditingFact,
   getOverview,
 }) => {
   const handleChange = e => {
-    setEditingFact({ ...fact, [e.target.name]: e.target.value });
+    setEditingFact({ ...editing_fact, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await apiUpdateFact(fact);
+      await apiUpdateFact(editing_fact);
 
       await getOverview(overview.question);
 
@@ -29,9 +28,9 @@ const EditFact = ({
     }
   };
 
-  const apiUpdateFact = async fact => {
+  const apiUpdateFact = async editing_fact => {
     try {
-      await axios.put('/fact', { edited_fact: fact });
+      await axios.put('/fact', { edited_fact: editing_fact });
     } catch (e) {
       console.log(e);
     }
@@ -45,9 +44,9 @@ const EditFact = ({
   return (
     <Fragment>
       <form className="form" onSubmit={handleSubmit}>
-        <div className={`fact edit${fact ? '' : '--hidden'}`}>
-          {fact &&
-            Object.entries(fact).map(([pos, text]) => {
+        <div className={`fact edit${editing_fact ? '' : '--hidden'}`}>
+          {editing_fact &&
+            Object.entries(editing_fact).map(([pos, text]) => {
               if (pos != '[SKIP] UID') {
                 return (
                   <ul className="fact-part">
@@ -68,7 +67,11 @@ const EditFact = ({
               }
             })}
         </div>
-        <div className={`edit edit__button-container${fact ? '' : '--hidden'}`}>
+        <div
+          className={`edit edit__button-container${
+            editing_fact ? '' : '--hidden'
+          }`}
+        >
           <input type="submit" className="btn btn--save" value="Save"></input>
           <button className="btn btn--cancel" onClick={cancelEdit}>
             Cancel
@@ -79,4 +82,4 @@ const EditFact = ({
   );
 };
 
-export default EditFact;
+export default EditFactForm;
