@@ -76,7 +76,9 @@ function App() {
           setAddingFact={setAddingFact}
           templates={templates}
           setTemplates={setTemplates}
-          blurred={editing_fact != null || templates != null}
+          blurred={
+            editing_fact != null || templates != null || adding_fact != null
+          }
         />
       )}
       <EditFactForm
