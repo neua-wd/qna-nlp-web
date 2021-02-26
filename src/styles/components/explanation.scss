@@ -1,0 +1,13 @@
+.explanation {
+  background-color: #d8ffc4;
+  margin: 10px 300px 0 300px;
+  padding: 40px;
+  border-radius: 6px;
+  text-align: center;
+
+  &__title {
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 10px;
+  }
+}

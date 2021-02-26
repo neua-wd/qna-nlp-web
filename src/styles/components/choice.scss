@@ -1,0 +1,20 @@
+.choice {
+  margin: 20px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 20px;
+  width: 200px;
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &--correct {
+    background-color: #d8ffc4;
+  }
+
+  &--incorrect {
+    opacity: 0.6;
+    background-color: #ffc7c7;
+  }
+}

@@ -1,0 +1,21 @@
+.get-question {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  left: 30px;
+  top: 30px;
+  height: 25px;
+
+  &__icon {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  &__form {
+    width: 550px;
+  }
+
+  &__button {
+    cursor: pointer;
+  }
+}
