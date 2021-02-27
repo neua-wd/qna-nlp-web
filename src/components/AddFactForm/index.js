@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import '../../styles/components/facts.scss';
 
-const AddFactForm = ({ overview, getOverview, adding_fact, setAddingFact }) => {
+const AddFactForm = ({ overview, setOverview, adding_fact, setAddingFact }) => {
   const handleChange = e => {
     const new_fact = {
       ...adding_fact.new_fact,
@@ -20,24 +20,16 @@ const AddFactForm = ({ overview, getOverview, adding_fact, setAddingFact }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+
     try {
-      await apiAddFact();
-
-      await getOverview(overview.question);
-
-      setAddingFact(null);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const apiAddFact = async () => {
-    try {
-      await axios.post('/fact', {
+      const res = await axios.post('/fact', {
         table_name: adding_fact.table_name,
         to_question: overview.question_id,
         new_fact: adding_fact.new_fact,
       });
+
+      setOverview(res.data);
+      setAddingFact(null);
     } catch (e) {
       console.log(e);
     }

@@ -92,7 +92,7 @@ function App() {
       />
       <AddFactForm
         overview={overview}
-        getOverview={getOverview}
+        setOverview={setOverview}
         adding_fact={adding_fact}
         setAddingFact={setAddingFact}
       />
