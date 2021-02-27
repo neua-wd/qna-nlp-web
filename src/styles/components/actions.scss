@@ -1,0 +1,38 @@
+.actions {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+
+.get-question {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+
+  &__icon {
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &__form {
+    width: 550px;
+  }
+
+  &__button {
+    cursor: pointer;
+  }
+}
+
+.add-fact {
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+}

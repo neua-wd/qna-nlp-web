@@ -1,5 +1,5 @@
 import Fact from './Fact';
-import EditFact from '../EditFact';
+import EditFact from '../EditFactForm';
 
 import { MapInteractionCSS } from 'react-map-interaction';
 import { useState } from 'react';

@@ -3,35 +3,33 @@ import axios from 'axios';
 
 import '../../styles/components/facts.scss';
 
-const EditFact = ({
-  fact,
-  index,
-  overview,
-  setOverview,
-  setEditingFact,
-  getOverview,
-}) => {
+const AddFactForm = ({ overview, setOverview, adding_fact, setAddingFact }) => {
   const handleChange = e => {
-    setEditingFact({ ...fact, [e.target.name]: e.target.value });
+    const new_fact = {
+      ...adding_fact.new_fact,
+      [e.target.name]: e.target.value,
+    };
+
+    setAddingFact({
+      ...adding_fact,
+      new_fact,
+    });
+
+    console.log(adding_fact);
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
+
     try {
-      await apiUpdateFact(fact);
+      const res = await axios.post('/fact', {
+        table_name: adding_fact.table_name,
+        to_question: overview.question_id,
+        new_fact: adding_fact.new_fact,
+      });
 
-      await getOverview(overview.question);
-
-      setEditingFact(null);
-    } catch (e) {
-      setOverview(overview);
-      console.log(e);
-    }
-  };
-
-  const apiUpdateFact = async fact => {
-    try {
-      await axios.put('/fact', { edited_fact: fact });
+      setOverview(res.data);
+      setAddingFact(null);
     } catch (e) {
       console.log(e);
     }
@@ -39,15 +37,15 @@ const EditFact = ({
 
   const cancelEdit = e => {
     e.preventDefault();
-    setEditingFact(null);
+    setAddingFact(null);
   };
 
   return (
     <Fragment>
       <form className="form" onSubmit={handleSubmit}>
-        <div className={`fact edit${fact ? '' : '--hidden'}`}>
-          {fact &&
-            Object.entries(fact).map(([pos, text]) => {
+        <div className={`fact edit${adding_fact ? '' : '--hidden'}`}>
+          {adding_fact &&
+            Object.entries(adding_fact.new_fact).map(([pos, text]) => {
               if (pos != '[SKIP] UID') {
                 return (
                   <ul className="fact-part">
@@ -68,7 +66,11 @@ const EditFact = ({
               }
             })}
         </div>
-        <div className={`edit edit__button-container${fact ? '' : '--hidden'}`}>
+        <div
+          className={`edit edit__button-container${
+            adding_fact ? '' : '--hidden'
+          }`}
+        >
           <input type="submit" className="btn btn--save" value="Save"></input>
           <button className="btn btn--cancel" onClick={cancelEdit}>
             Cancel
@@ -79,4 +81,4 @@ const EditFact = ({
   );
 };
 
-export default EditFact;
+export default AddFactForm;
