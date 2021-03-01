@@ -20,9 +20,19 @@ function App() {
   const [adding_fact, setAddingFact] = useState();
   const [templates, setTemplates] = useState();
 
+  if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+  }
+
   const getOverview = async question => {
     try {
-      const res = await axios.get('/overview', { params: { question } });
+      const res = await axios.get(
+        `${process.env.REACT_APP_QNA_NLP_API}/overview`,
+        {
+          params: { question },
+        }
+      );
+
       setOverview(res.data);
     } catch (e) {
       console.log(e);
@@ -31,7 +41,9 @@ function App() {
 
   const getTemplates = async () => {
     try {
-      const res = await axios.get('/column_names');
+      const res = await axios.get(
+        `${process.env.REACT_APP_QNA_NLP_API}/templates`
+      );
 
       setTemplates(res.data);
     } catch (e) {

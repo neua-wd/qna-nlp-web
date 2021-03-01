@@ -14,19 +14,20 @@ const AddFactForm = ({ overview, setOverview, adding_fact, setAddingFact }) => {
       ...adding_fact,
       new_fact,
     });
-
-    console.log(adding_fact);
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('/fact', {
-        table_name: adding_fact.table_name,
-        to_question: overview.question_id,
-        new_fact: adding_fact.new_fact,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_QNA_NLP_API}/fact`,
+        {
+          table_name: adding_fact.table_name,
+          to_question: overview.question_id,
+          new_fact: adding_fact.new_fact,
+        }
+      );
 
       setOverview(res.data);
       setAddingFact(null);
