@@ -49,12 +49,22 @@ const AddFactForm = ({ overview, setOverview, adding_fact, setAddingFact }) => {
             Object.entries(adding_fact.new_fact).map(([pos, text]) => {
               if (pos != '[SKIP] UID') {
                 return (
-                  <ul className="fact-part">
+                  <ul
+                    className={`fact-part ${
+                      adding_fact.table_name == 'NO-TEMPLATE'
+                        ? 'full-width'
+                        : ''
+                    }`}
+                  >
                     <li className="fact-part__column-name">{pos}</li>
                     <li>
                       <input
                         className={`fact-part__text fact-part__text${
-                          pos.includes('[FILL') ? '--fill' : ''
+                          pos.includes('[FILL')
+                            ? '--fill'
+                            : '' + adding_fact.table_name == 'NO-TEMPLATE'
+                            ? ' full-width'
+                            : ''
                         }`}
                         name={pos}
                         value={text}
