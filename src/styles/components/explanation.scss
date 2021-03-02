@@ -3,6 +3,8 @@
   padding: 40px;
   border-radius: 6px;
   text-align: center;
+  overflow-y: scroll;
+  height: 270px;
 
   &--correct {
     background-color: #d8ffc4;

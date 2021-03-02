@@ -19,6 +19,7 @@ function App() {
   const [editing_fact, setEditingFact] = useState();
   const [adding_fact, setAddingFact] = useState();
   const [templates, setTemplates] = useState();
+  const [loading, setLoading] = useState();
 
   if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
@@ -85,6 +86,7 @@ function App() {
           overview={overview}
           setOverview={setOverview}
           getTemplates={getTemplates}
+          loading={loading}
           blurred={templates != null || adding_fact != null}
         />
       ) : (
@@ -96,6 +98,7 @@ function App() {
           setAddingFact={setAddingFact}
           templates={templates}
           setTemplates={setTemplates}
+          loading={loading}
           blurred={
             editing_fact != null || templates != null || adding_fact != null
           }
@@ -115,6 +118,7 @@ function App() {
         setOverview={setOverview}
         adding_fact={adding_fact}
         setAddingFact={setAddingFact}
+        setLoading={setLoading}
       />
     </div>
   );

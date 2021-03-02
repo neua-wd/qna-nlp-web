@@ -3,7 +3,13 @@ import axios from 'axios';
 
 import '../../styles/components/facts.scss';
 
-const AddFactForm = ({ overview, setOverview, adding_fact, setAddingFact }) => {
+const AddFactForm = ({
+  overview,
+  setOverview,
+  adding_fact,
+  setAddingFact,
+  setLoading,
+}) => {
   const handleChange = e => {
     const new_fact = {
       ...adding_fact.new_fact,
@@ -20,6 +26,8 @@ const AddFactForm = ({ overview, setOverview, adding_fact, setAddingFact }) => {
     e.preventDefault();
 
     try {
+      setAddingFact(null);
+      setLoading(true);
       const res = await axios.post(
         `${process.env.REACT_APP_QNA_NLP_API}/fact`,
         {
@@ -34,7 +42,7 @@ const AddFactForm = ({ overview, setOverview, adding_fact, setAddingFact }) => {
         ...res.data,
         current_explanation: overview.current_explanation,
       });
-      setAddingFact(null);
+      setLoading(false);
     } catch (e) {
       console.log(e);
     }
