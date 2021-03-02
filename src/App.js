@@ -33,7 +33,10 @@ function App() {
         }
       );
 
-      setOverview(res.data);
+      const data = res.data;
+      data.current_explanation = 'explanation';
+
+      setOverview(data);
     } catch (e) {
       console.log(e);
     }
@@ -66,7 +69,7 @@ function App() {
       <div className="actions">
         <GetQuestionButton getOverview={getOverview} />
         <AddFactButton
-          detailed={screen != 'overview'}
+          hidden={screen == 'overview'}
           getTemplates={getTemplates}
         />
       </div>
@@ -78,7 +81,12 @@ function App() {
         />
       )}
       {screen == 'overview' ? (
-        <Overview overview={overview} />
+        <Overview
+          overview={overview}
+          setOverview={setOverview}
+          getTemplates={getTemplates}
+          blurred={templates != null || adding_fact != null}
+        />
       ) : (
         <Details
           overview={overview}

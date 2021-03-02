@@ -1,9 +1,16 @@
 .explanation {
-  background-color: #d8ffc4;
   margin: 10px 300px 0 300px;
   padding: 40px;
   border-radius: 6px;
   text-align: center;
+
+  &--correct {
+    background-color: #d8ffc4;
+  }
+
+  &--incorrect {
+    background-color: #ffd4d4;
+  }
 
   &__title {
     font-weight: bold;

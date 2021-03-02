@@ -1,9 +1,7 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-
 import '../../styles/components/explanation.scss';
+import AddFactButton from '../AddFactButton';
 
-const Explanation = ({ explanation }) => {
+const Explanation = ({ explanation, correct, getTemplates }) => {
   // takes fact as an object. eg:
   //  {
   //    "ACTOR/WHO": "moving",
@@ -21,7 +19,11 @@ const Explanation = ({ explanation }) => {
   };
 
   return (
-    <div className="explanation">
+    <div
+      className={`explanation explanation--${
+        correct ? 'correct' : 'incorrect'
+      }`}
+    >
       <div className="explanation__title">Explanation</div>
       {explanation?.map((fact, index) => {
         return (
@@ -32,6 +34,7 @@ const Explanation = ({ explanation }) => {
           </div>
         );
       })}
+      <AddFactButton disabled={false} getTemplates={getTemplates} />
     </div>
   );
 };

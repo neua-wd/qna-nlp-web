@@ -1,9 +1,7 @@
 import Question from '../../components/Question';
 import Facts from '../../components/Facts';
-import EditFact from '../../components/EditFactForm';
 
 import '../../styles/screens/details.scss';
-import { useState } from 'react';
 
 const Details = ({
   overview,
@@ -29,7 +27,10 @@ const Details = ({
       {overview && (
         <div className={`details ${blurred ? 'details--blur' : ''}`}>
           <Question question={overview.question} />
-          <Facts facts={overview.explanation} setEditingFact={setEditingFact} />
+          <Facts
+            facts={overview[overview.current_explanation]}
+            setEditingFact={setEditingFact}
+          />
         </div>
       )}
     </div>

@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import axios from 'axios';
 
 import '../../styles/components/facts.scss';
@@ -25,11 +25,15 @@ const AddFactForm = ({ overview, setOverview, adding_fact, setAddingFact }) => {
         {
           table_name: adding_fact.table_name,
           to_question: overview.question_id,
+          explanation: overview.current_explanation,
           new_fact: adding_fact.new_fact,
         }
       );
 
-      setOverview(res.data);
+      setOverview({
+        ...res.data,
+        current_explanation: overview.current_explanation,
+      });
       setAddingFact(null);
     } catch (e) {
       console.log(e);

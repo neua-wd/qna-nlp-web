@@ -3,13 +3,18 @@ import '../../styles/components/choices.scss';
 
 // Choices component
 // For each choice (ie. A/B/C/D) renders a choice component
-const Choices = ({ choices, answer }) => {
+const Choices = ({ overview, setOverview }) => {
   return (
     <div className="choices">
-      {choices &&
-        Object.entries(choices).map(([key, value]) => {
+      {overview.choices &&
+        Object.entries(overview.choices).map(([key, value]) => {
           return (
-            <Choice letter={key} sentence={value} correct={key === answer} />
+            <Choice
+              letter={key}
+              sentence={value}
+              overview={overview}
+              setOverview={setOverview}
+            />
           );
         })}
     </div>
