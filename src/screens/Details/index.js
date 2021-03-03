@@ -1,9 +1,8 @@
 import Question from '../../components/Question';
 import Facts from '../../components/Facts';
-import EditFact from '../../components/EditFactForm';
+import Spinner from '../../components/Spinner';
 
 import '../../styles/screens/details.scss';
-import { useState } from 'react';
 
 const Details = ({
   overview,
@@ -13,6 +12,7 @@ const Details = ({
   setAddingFact,
   templates,
   setTemplates,
+  loading,
   blurred,
 }) => {
   const handleClick = () => {
@@ -26,12 +26,18 @@ const Details = ({
       className={`details ${blurred ? 'details--blur' : ''}`}
       onClick={handleClick}
     >
-      {overview && (
-        <div className={`details ${blurred ? 'details--blur' : ''}`}>
-          <Question question={overview.question} />
-          <Facts facts={overview.explanation} setEditingFact={setEditingFact} />
-        </div>
-      )}
+      {overview &&
+        (loading ? (
+          <Spinner />
+        ) : (
+          <div className={`details ${blurred ? 'details--blur' : ''}`}>
+            <Question question={overview.question} />
+            <Facts
+              facts={overview[overview.current_explanation]}
+              setEditingFact={setEditingFact}
+            />
+          </div>
+        ))}
     </div>
   );
 };

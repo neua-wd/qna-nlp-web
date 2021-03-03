@@ -19,11 +19,25 @@ function App() {
   const [editing_fact, setEditingFact] = useState();
   const [adding_fact, setAddingFact] = useState();
   const [templates, setTemplates] = useState();
+  const [loading, setLoading] = useState();
+
+  if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+  }
 
   const getOverview = async question => {
     try {
-      const res = await axios.get('/overview', { params: { question } });
-      setOverview(res.data);
+      const res = await axios.get(
+        `${process.env.REACT_APP_QNA_NLP_API}/overview`,
+        {
+          params: { question },
+        }
+      );
+
+      const data = res.data;
+      data.current_explanation = 'explanation';
+
+      setOverview(data);
     } catch (e) {
       console.log(e);
     }
@@ -31,7 +45,9 @@ function App() {
 
   const getTemplates = async () => {
     try {
-      const res = await axios.get('/column_names');
+      const res = await axios.get(
+        `${process.env.REACT_APP_QNA_NLP_API}/templates`
+      );
 
       setTemplates(res.data);
     } catch (e) {
@@ -54,7 +70,7 @@ function App() {
       <div className="actions">
         <GetQuestionButton getOverview={getOverview} />
         <AddFactButton
-          detailed={screen != 'overview'}
+          hidden={screen == 'overview'}
           getTemplates={getTemplates}
         />
       </div>
@@ -66,7 +82,15 @@ function App() {
         />
       )}
       {screen == 'overview' ? (
-        <Overview overview={overview} />
+        <Overview
+          overview={overview}
+          setOverview={setOverview}
+          getTemplates={getTemplates}
+          setAddingFact={setAddingFact}
+          setTemplates={setTemplates}
+          loading={loading}
+          blurred={templates != null || adding_fact != null}
+        />
       ) : (
         <Details
           overview={overview}
@@ -76,6 +100,7 @@ function App() {
           setAddingFact={setAddingFact}
           templates={templates}
           setTemplates={setTemplates}
+          loading={loading}
           blurred={
             editing_fact != null || templates != null || adding_fact != null
           }
@@ -95,6 +120,7 @@ function App() {
         setOverview={setOverview}
         adding_fact={adding_fact}
         setAddingFact={setAddingFact}
+        setLoading={setLoading}
       />
     </div>
   );

@@ -30,7 +30,9 @@ const EditFactForm = ({
 
   const apiUpdateFact = async editing_fact => {
     try {
-      await axios.put('/fact', { edited_fact: editing_fact });
+      await axios.put(`${process.env.REACT_APP_QNA_NLP_API}/fact`, {
+        edited_fact: editing_fact,
+      });
     } catch (e) {
       console.log(e);
     }

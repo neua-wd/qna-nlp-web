@@ -3,18 +3,18 @@ import IconButton from '@material-ui/core/IconButton';
 
 import '../../styles/components/actions.scss';
 
-const AddFactButton = ({ detailed, getTemplates }) => {
+const AddFactButton = ({ hidden, getTemplates }) => {
   return (
     <IconButton
       aria-label="Add a new fact"
       titleAccess="meaning"
-      disabled={detailed ? false : true}
+      style={hidden ? { display: 'none' } : {}}
       onClick={getTemplates}
     >
       <AddCircleTwoToneIcon
         fontSize="large"
         className="add-fact"
-        color={detailed ? 'primary' : 'disabled'}
+        color="primary"
         aria-label="delete"
         titleAccess="meaning"
       />
