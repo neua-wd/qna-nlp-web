@@ -26,10 +26,10 @@ const Overview = ({
       className={`overview${blurred ? '--blurred' : ''}`}
       onClick={handleClick}
     >
-      {overview &&
-        (loading ? (
-          <Spinner />
-        ) : (
+      {loading ? (
+        <Spinner />
+      ) : (
+        overview && (
           <div>
             <Question question={overview.question} />
             <Choices overview={overview} setOverview={setOverview} />
@@ -39,7 +39,8 @@ const Overview = ({
               getTemplates={getTemplates}
             />
           </div>
-        ))}
+        )
+      )}
     </div>
   );
 };
