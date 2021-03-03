@@ -86,6 +86,8 @@ function App() {
           overview={overview}
           setOverview={setOverview}
           getTemplates={getTemplates}
+          setAddingFact={setAddingFact}
+          setTemplates={setTemplates}
           loading={loading}
           blurred={templates != null || adding_fact != null}
         />

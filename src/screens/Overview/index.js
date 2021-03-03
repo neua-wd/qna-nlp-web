@@ -11,11 +11,21 @@ const Overview = ({
   overview,
   setOverview,
   getTemplates,
+  setAddingFact,
+  setTemplates,
   loading,
   blurred,
 }) => {
+  const handleClick = () => {
+    setTemplates(null);
+    setAddingFact(null);
+  };
+
   return (
-    <div className={`overview${blurred ? '--blurred' : ''}`}>
+    <div
+      className={`overview${blurred ? '--blurred' : ''}`}
+      onClick={handleClick}
+    >
       {overview &&
         (loading ? (
           <Spinner />
