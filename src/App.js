@@ -19,13 +19,15 @@ function App() {
   const [editing_fact, setEditingFact] = useState();
   const [adding_fact, setAddingFact] = useState();
   const [templates, setTemplates] = useState();
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
 
   if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
   }
 
   const getOverview = async question => {
+    setLoading(true);
+
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_QNA_NLP_API}/overview`,
@@ -38,6 +40,8 @@ function App() {
       data.current_explanation = 'explanation';
 
       setOverview(data);
+
+      setLoading(false);
     } catch (e) {
       console.log(e);
     }
