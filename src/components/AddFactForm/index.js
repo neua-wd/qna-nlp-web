@@ -9,6 +9,7 @@ const AddFactForm = ({
   setOverview,
   adding_fact,
   setAddingFact,
+  setSuggestions,
   setLoading,
 }) => {
   const handleChange = e => {
@@ -54,6 +55,22 @@ const AddFactForm = ({
     setAddingFact(null);
   };
 
+  const showSuggestions = async () => {
+    setAddingFact(null);
+    setLoading(true);
+
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_QNA_NLP_API}/suggestions`
+      );
+
+      setSuggestions(res.data);
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className={`add-fact-form-container${adding_fact ? '' : '--hidden'}`}>
       <div className="add-fact-form">
@@ -63,7 +80,9 @@ const AddFactForm = ({
             choose from a template
           </button>
           &nbsp;or
-          <button className="add-fact-form__button">see suggestions</button>
+          <button className="add-fact-form__button" onClick={showSuggestions}>
+            see suggestions
+          </button>
         </div>
         <form className="form" onSubmit={handleSubmit}>
           <div className="fact edit">

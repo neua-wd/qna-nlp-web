@@ -9,6 +9,7 @@ import EditFactForm from './components/EditFactForm';
 import AddFactButton from './components/AddFactButton';
 import AddFactForm from './components/AddFactForm';
 import NewFactTemplates from './components/NewFactTemplates';
+import Suggestions from './components/Suggestions';
 
 import './styles/app.scss';
 import './styles/components/actions.scss';
@@ -18,6 +19,7 @@ function App() {
   const [overview, setOverview] = useState();
   const [editing_fact, setEditingFact] = useState();
   const [adding_fact, setAddingFact] = useState();
+  const [suggestions, setSuggestions] = useState();
   const [templates, setTemplates] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -73,6 +75,13 @@ function App() {
     }
   };
 
+  const clearComponents = () => {
+    if (adding_fact) setAddingFact(null);
+    if (templates) setTemplates(null);
+    if (suggestions) setSuggestions(null);
+    if (editing_fact) setEditingFact(null);
+  };
+
   return (
     <div className="app">
       {overview && <ScreenSwitcher switchScreen={switchScreen} />}
@@ -94,27 +103,28 @@ function App() {
           setLoading={setLoading}
         />
       )}
-      {console.log(adding_fact) || screen == 'overview' ? (
+      {suggestions && (
+        <Suggestions
+          suggestions={suggestions}
+          setAddingFact={setAddingFact}
+          setSuggestions={setSuggestions}
+        />
+      )}
+      {screen == 'overview' ? (
         <Overview
+          clearComponents={clearComponents}
           overview={overview}
           setOverview={setOverview}
           getTemplates={getTemplates}
-          adding_fact={adding_fact}
           setAddingFact={setAddingFact}
-          templates={templates}
-          setTemplates={setTemplates}
           loading={loading}
           blurred={templates != null || adding_fact != null}
         />
       ) : (
         <Details
+          clearComponents={clearComponents}
           overview={overview}
-          editing_fact={editing_fact}
           setEditingFact={setEditingFact}
-          adding_fact={adding_fact}
-          setAddingFact={setAddingFact}
-          templates={templates}
-          setTemplates={setTemplates}
           loading={loading}
           blurred={
             editing_fact != null || templates != null || adding_fact != null
@@ -136,6 +146,7 @@ function App() {
         setOverview={setOverview}
         adding_fact={adding_fact}
         setAddingFact={setAddingFact}
+        setSuggestions={setSuggestions}
         setLoading={setLoading}
       />
     </div>
