@@ -5,26 +5,16 @@ import Spinner from '../../components/Spinner';
 import '../../styles/screens/details.scss';
 
 const Details = ({
+  clearComponents,
   overview,
-  editing_fact,
   setEditingFact,
-  adding_fact,
-  setAddingFact,
-  templates,
-  setTemplates,
   loading,
   blurred,
 }) => {
-  const handleClick = () => {
-    if (editing_fact) setEditingFact(null);
-    if (templates) setTemplates(null);
-    if (adding_fact) setAddingFact(null);
-  };
-
   return (
     <div
       className={`details ${blurred ? 'details--blur' : ''}`}
-      onClick={handleClick}
+      onClick={clearComponents}
     >
       {overview &&
         (loading ? (

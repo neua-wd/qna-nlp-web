@@ -8,25 +8,18 @@ import '../../styles/screens/overview.scss';
 // The Overview screen contains the overview of a particular question
 // Includes the question the choices and the explanation
 const Overview = ({
+  clearComponents,
   overview,
   setOverview,
   getTemplates,
-  adding_fact,
   setAddingFact,
-  templates,
-  setTemplates,
   loading,
   blurred,
 }) => {
-  const handleClick = () => {
-    if (templates) setTemplates(null);
-    if (adding_fact) setAddingFact(null);
-  };
-
   return (
     <div
       className={`overview${blurred ? '--blurred' : ''}`}
-      onClick={handleClick}
+      onClick={clearComponents}
     >
       {loading ? (
         <Spinner />
