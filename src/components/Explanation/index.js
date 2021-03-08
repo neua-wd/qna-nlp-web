@@ -12,8 +12,8 @@ const Explanation = ({ explanation, correct, getTemplates, setAddingFact }) => {
   // and returns a string eg "moving changes position"
   const toSentence = fact => {
     let sentence = '';
-    for (const pos in fact) {
-      if (pos != '[SKIP] UID') sentence += fact[pos] + ' ';
+    for (const column_name in fact) {
+      if (!column_name.includes('[SKIP]')) sentence += fact[column_name] + ' ';
     }
 
     return sentence;
