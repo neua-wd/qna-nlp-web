@@ -1,7 +1,8 @@
-import '../../styles/components/explanation.scss';
 import AddFactButton from '../AddFactButton';
 
-const Explanation = ({ explanation, correct, getTemplates }) => {
+import '../../styles/components/explanation.scss';
+
+const Explanation = ({ explanation, correct, getTemplates, setAddingFact }) => {
   // takes fact as an object. eg:
   //  {
   //    "ACTOR/WHO": "moving",
@@ -34,7 +35,11 @@ const Explanation = ({ explanation, correct, getTemplates }) => {
           </div>
         );
       })}
-      <AddFactButton disabled={false} getTemplates={getTemplates} />
+      <AddFactButton
+        disabled={false}
+        getTemplates={getTemplates}
+        setAddingFact={setAddingFact}
+      />
     </div>
   );
 };

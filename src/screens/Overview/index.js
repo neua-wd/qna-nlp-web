@@ -11,14 +11,16 @@ const Overview = ({
   overview,
   setOverview,
   getTemplates,
+  adding_fact,
   setAddingFact,
+  templates,
   setTemplates,
   loading,
   blurred,
 }) => {
   const handleClick = () => {
-    setTemplates(null);
-    setAddingFact(null);
+    if (templates) setTemplates(null);
+    if (adding_fact) setAddingFact(null);
   };
 
   return (
@@ -37,6 +39,7 @@ const Overview = ({
               explanation={overview[overview.current_explanation]}
               correct={overview.current_explanation == 'explanation'}
               getTemplates={getTemplates}
+              setAddingFact={setAddingFact}
             />
           </div>
         )

@@ -1,10 +1,11 @@
-import { Fragment } from 'react';
 import axios from 'axios';
 
 import '../../styles/components/facts.scss';
+import '../../styles/components/add-fact-form.scss';
 
 const AddFactForm = ({
   overview,
+  getTemplates,
   setOverview,
   adding_fact,
   setAddingFact,
@@ -54,53 +55,63 @@ const AddFactForm = ({
   };
 
   return (
-    <Fragment>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className={`fact edit${adding_fact ? '' : '--hidden'}`}>
-          {adding_fact &&
-            Object.entries(adding_fact.new_fact).map(([pos, text]) => {
-              if (pos != '[SKIP] UID') {
-                return (
-                  <ul
-                    className={`fact-part ${
-                      adding_fact.table_name == 'NO-TEMPLATE'
-                        ? 'full-width'
-                        : ''
-                    }`}
-                  >
-                    <li className="fact-part__column-name">{pos}</li>
-                    <li>
-                      <input
-                        className={`fact-part__text fact-part__text${
-                          pos.includes('[FILL')
-                            ? '--fill'
-                            : '' + adding_fact.table_name == 'NO-TEMPLATE'
-                            ? ' full-width'
-                            : ''
-                        }`}
-                        name={pos}
-                        value={text}
-                        onChange={handleChange}
-                        autocomplete="off"
-                      ></input>
-                    </li>
-                  </ul>
-                );
-              }
-            })}
-        </div>
-        <div
-          className={`edit edit__button-container${
-            adding_fact ? '' : '--hidden'
-          }`}
-        >
-          <input type="submit" className="btn btn--save" value="Save"></input>
-          <button className="btn btn--cancel" onClick={cancelEdit}>
-            Cancel
+    <div className={`add-fact-form-container${adding_fact ? '' : '--hidden'}`}>
+      <div className="add-fact-form">
+        <div className="add-fact-form__header">
+          You can also
+          <button className="add-fact-form__button" onClick={getTemplates}>
+            choose from a template
           </button>
+          &nbsp;or
+          <button className="add-fact-form__button">see suggestions</button>
         </div>
-      </form>
-    </Fragment>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="fact edit">
+            {adding_fact &&
+              Object.entries(adding_fact.new_fact).map(([pos, text]) => {
+                if (pos != '[SKIP] UID') {
+                  return (
+                    <ul
+                      className={`fact-part ${
+                        adding_fact.table_name == 'NO-TEMPLATE'
+                          ? 'full-width'
+                          : ''
+                      }`}
+                    >
+                      <li className="fact-part__column-name">{pos}</li>
+                      <li>
+                        <input
+                          className={`fact-part__text fact-part__text${
+                            pos.includes('[FILL')
+                              ? '--fill'
+                              : '' + adding_fact.table_name == 'NO-TEMPLATE'
+                              ? ' full-width'
+                              : ''
+                          }`}
+                          name={pos}
+                          value={text}
+                          onChange={handleChange}
+                          autocomplete="off"
+                        ></input>
+                      </li>
+                    </ul>
+                  );
+                }
+              })}
+          </div>
+          <div
+            className={`edit edit__button-container${
+              adding_fact ? '' : '--hidden'
+            }`}
+          >
+            <input type="submit" className="btn btn--save" value="Save"></input>
+            <button className="btn btn--cancel" onClick={cancelEdit}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 
