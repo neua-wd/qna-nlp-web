@@ -118,7 +118,7 @@ function App() {
           getTemplates={getTemplates}
           setAddingFact={setAddingFact}
           loading={loading}
-          blurred={templates != null || adding_fact != null}
+          blurred={adding_fact || templates || suggestions}
         />
       ) : (
         <Details
@@ -126,9 +126,7 @@ function App() {
           overview={overview}
           setEditingFact={setEditingFact}
           loading={loading}
-          blurred={
-            editing_fact != null || templates != null || adding_fact != null
-          }
+          blurred={adding_fact || editing_fact || templates || suggestions}
         />
       )}
       <EditFactForm
