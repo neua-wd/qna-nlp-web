@@ -23,19 +23,23 @@ const Overview = ({
     >
       {loading ? (
         <Spinner />
+      ) : overview ? (
+        <div>
+          <Question question={overview.question} />
+          <Choices overview={overview} setOverview={setOverview} />
+          <Explanation
+            explanation={overview[overview.current_explanation]}
+            correct={overview.current_explanation == 'explanation'}
+            getTemplates={getTemplates}
+            setAddingFact={setAddingFact}
+          />
+        </div>
       ) : (
-        overview && (
-          <div>
-            <Question question={overview.question} />
-            <Choices overview={overview} setOverview={setOverview} />
-            <Explanation
-              explanation={overview[overview.current_explanation]}
-              correct={overview.current_explanation == 'explanation'}
-              getTemplates={getTemplates}
-              setAddingFact={setAddingFact}
-            />
-          </div>
-        )
+        <div>
+          Please search for an exact question <br />
+          (eg. What remains in the same location in the sky of the Northern
+          Hemisphere each night?)
+        </div>
       )}
     </div>
   );
