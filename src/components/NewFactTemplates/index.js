@@ -1,22 +1,7 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-
-import Fact from '../Facts/Fact';
-
 import '../../styles/components/templates.scss';
 
 const NewFactTemplates = ({ templates, setAddingFact, setTemplates }) => {
   const handleClick = template => {
-    if (template == null) {
-      setAddingFact({
-        table_name: 'NO-TEMPLATE',
-        new_fact: { '[UNLABELED]': '' },
-      });
-      setTemplates(null);
-
-      return;
-    }
-
     const new_fact = {};
     template[1].forEach(column_name => {
       new_fact[column_name] = '';
@@ -31,14 +16,9 @@ const NewFactTemplates = ({ templates, setAddingFact, setTemplates }) => {
   };
 
   return (
-    <div className="container">
+    <div className="templates-container">
       <div className="templates">
-        <div className="header">
-          Please choose a template for the new fact or
-          <button className="btn" onClick={() => handleClick()}>
-            enter without a template
-          </button>
-        </div>
+        <div className="header">Please choose a template for the new fact</div>
         <div className="templates__rows">
           <ul>
             {Object.entries(templates).map((template, index) => {

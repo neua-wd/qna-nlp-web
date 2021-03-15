@@ -6,9 +6,10 @@ import Details from './screens/Details';
 import ScreenSwitcher from './components/ScreenSwitcher';
 import GetQuestionButton from './components/GetQuestionButton';
 import EditFactForm from './components/EditFactForm';
-import NewFactTemplates from './components/NewFactTemplates';
 import AddFactButton from './components/AddFactButton';
 import AddFactForm from './components/AddFactForm';
+import NewFactTemplates from './components/NewFactTemplates';
+import Suggestions from './components/Suggestions';
 
 import './styles/app.scss';
 import './styles/components/actions.scss';
@@ -18,6 +19,7 @@ function App() {
   const [overview, setOverview] = useState();
   const [editing_fact, setEditingFact] = useState();
   const [adding_fact, setAddingFact] = useState();
+  const [suggestions, setSuggestions] = useState();
   const [templates, setTemplates] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -48,12 +50,17 @@ function App() {
   };
 
   const getTemplates = async () => {
+    setLoading(true);
+
+    setAddingFact(null);
+
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_QNA_NLP_API}/templates`
       );
 
       setTemplates(res.data);
+      setLoading(false);
     } catch (e) {
       console.log(e);
     }
@@ -68,6 +75,13 @@ function App() {
     }
   };
 
+  const clearComponents = () => {
+    if (adding_fact) setAddingFact(null);
+    if (templates) setTemplates(null);
+    if (suggestions) setSuggestions(null);
+    if (editing_fact) setEditingFact(null);
+  };
+
   return (
     <div className="app">
       {overview && <ScreenSwitcher switchScreen={switchScreen} />}
@@ -75,7 +89,7 @@ function App() {
         <GetQuestionButton getOverview={getOverview} />
         <AddFactButton
           hidden={screen == 'overview'}
-          getTemplates={getTemplates}
+          setAddingFact={setAddingFact}
         />
       </div>
       {templates && (
@@ -83,31 +97,36 @@ function App() {
           templates={templates}
           setAddingFact={setAddingFact}
           setTemplates={setTemplates}
+          overview={overview}
+          setOverview={setOverview}
+          adding_fact={adding_fact}
+          setLoading={setLoading}
+        />
+      )}
+      {suggestions && (
+        <Suggestions
+          suggestions={suggestions}
+          setAddingFact={setAddingFact}
+          setSuggestions={setSuggestions}
         />
       )}
       {screen == 'overview' ? (
         <Overview
+          clearComponents={clearComponents}
           overview={overview}
           setOverview={setOverview}
           getTemplates={getTemplates}
           setAddingFact={setAddingFact}
-          setTemplates={setTemplates}
           loading={loading}
-          blurred={templates != null || adding_fact != null}
+          blurred={adding_fact || templates || suggestions}
         />
       ) : (
         <Details
+          clearComponents={clearComponents}
           overview={overview}
-          editing_fact={editing_fact}
           setEditingFact={setEditingFact}
-          adding_fact={adding_fact}
-          setAddingFact={setAddingFact}
-          templates={templates}
-          setTemplates={setTemplates}
           loading={loading}
-          blurred={
-            editing_fact != null || templates != null || adding_fact != null
-          }
+          blurred={adding_fact || editing_fact || templates || suggestions}
         />
       )}
       <EditFactForm
@@ -121,9 +140,11 @@ function App() {
       />
       <AddFactForm
         overview={overview}
+        getTemplates={getTemplates}
         setOverview={setOverview}
         adding_fact={adding_fact}
         setAddingFact={setAddingFact}
+        setSuggestions={setSuggestions}
         setLoading={setLoading}
       />
     </div>
