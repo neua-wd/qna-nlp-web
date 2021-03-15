@@ -6,9 +6,9 @@ A proof-of-concept web application to facilitate human feedback to an AI questio
 
 ## Development
 
-To run this in development environment, you also need the API mentioned above. For this you can either run [its repository](https://github.com/neua-wd/qna-nlp-api) locally or use the production URI (
+To run this in development environment, you will also need the API mentioned above. For this you can either run [its repository](https://github.com/neua-wd/qna-nlp-api) locally or use the production URI (
 https://qna-nlp-api.herokuapp.com) in place of the local variable REACT_APP_QNA_NLP_API.
 
-Run `npm install` to install all the required dependencies.
+Then run `npm install` to install all the required dependencies,
 
-Then run `npm start` start the server.
+and run `npm start` start the server.
