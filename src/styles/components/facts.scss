@@ -21,9 +21,11 @@
   margin: 20px;
   padding: 0;
 
-  &:hover {
-    transform: scale(1.1);
-    cursor: pointer;
+  &--selectable {
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
   }
 }
 
@@ -37,6 +39,10 @@
 .edit {
   overflow-x: scroll;
   padding: 0;
+
+  &--no-scroll {
+    overflow: hidden;
+  }
 
   &__button-container {
     display: flex;
@@ -84,6 +90,7 @@
   align-items: center;
   text-align: center;
   list-style-type: none;
+  font-size: medium;
   padding: 0;
   margin: 5px;
 

@@ -1,7 +1,10 @@
 import axios from 'axios';
+import Mic from '../Mic';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import '../../styles/components/facts.scss';
 import '../../styles/components/add-fact-form.scss';
+import { useState } from 'react';
 
 const AddFactForm = ({
   overview,
@@ -12,6 +15,10 @@ const AddFactForm = ({
   setSuggestions,
   setLoading,
 }) => {
+  const [micOn, setMic] = useState(false);
+  const SpeechRecognition =
+    window.speechRecognition || window.webkitSpeechRecognition;
+
   const handleChange = e => {
     const new_fact = {
       ...adding_fact.new_fact,
@@ -85,9 +92,13 @@ const AddFactForm = ({
           </button>
         </div>
         <form className="form" onSubmit={handleSubmit}>
-          <div className="fact edit">
-            {adding_fact &&
-              Object.entries(adding_fact.new_fact).map(([pos, text]) => {
+          {adding_fact && (
+            <div
+              className={`fact edit${
+                adding_fact.table_name == 'NO-TEMPLATE' ? '--no-scroll' : ''
+              }`}
+            >
+              {Object.entries(adding_fact.new_fact).map(([pos, text]) => {
                 if (pos != '[SKIP] UID') {
                   return (
                     <ul
@@ -98,7 +109,7 @@ const AddFactForm = ({
                       }`}
                     >
                       <li className="fact-part__column-name">{pos}</li>
-                      <li>
+                      <li className="text-with-mic">
                         <input
                           className={`fact-part__text fact-part__text${
                             pos.includes('[FILL')
@@ -112,12 +123,27 @@ const AddFactForm = ({
                           onChange={handleChange}
                           autocomplete="off"
                         ></input>
+                        {adding_fact.table_name == 'NO-TEMPLATE' &&
+                          SpeechRecognition && (
+                            <Mic
+                              SpeechRecognition={SpeechRecognition}
+                              setMic={setMic}
+                              micOn={micOn}
+                              adding_fact={adding_fact}
+                              setAddingFact={setAddingFact}
+                            />
+                          )}
                       </li>
+                      <LinearProgress
+                        className={`progress-bar${micOn ? '' : '--hidden'}`}
+                      />
                     </ul>
                   );
                 }
               })}
-          </div>
+            </div>
+          )}
+
           <div
             className={`edit edit__button-container${
               adding_fact ? '' : '--hidden'
