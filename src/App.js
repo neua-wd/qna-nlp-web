@@ -86,13 +86,13 @@ function App() {
   return (
     <div className="app">
       {overview && <ScreenSwitcher switchScreen={switchScreen} />}
-      <div className="actions">
+      {overview && (
         <Actions
           getOverview={getOverview}
           hide_add_fact={screen == 'overview'}
           setAddingFact={setAddingFact}
         />
-      </div>
+      )}
       {templates && (
         <NewFactTemplates
           templates={templates}
@@ -115,6 +115,7 @@ function App() {
         <Overview
           clearComponents={clearComponents}
           overview={overview}
+          getOverview={getOverview}
           setOverview={setOverview}
           getTemplates={getTemplates}
           setAddingFact={setAddingFact}
