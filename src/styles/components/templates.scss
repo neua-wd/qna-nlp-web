@@ -25,9 +25,7 @@
 
 .header {
   z-index: 3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   padding: 10px;
   box-shadow: 0px 0.5px 4px #c4c4c4;
 }
@@ -43,6 +41,12 @@
     background-color: #bac6ff;
     cursor: pointer;
   }
+}
+
+.back-button {
+  color: #7a7a7a;
+  float: left;
+  cursor: pointer;
 }
 
 .btn {
