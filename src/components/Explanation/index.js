@@ -1,4 +1,4 @@
-import AddFactButton from '../AddFactButton';
+import AddFactButton from '../Actions/AddFactButton';
 
 import '../../styles/components/explanation.scss';
 

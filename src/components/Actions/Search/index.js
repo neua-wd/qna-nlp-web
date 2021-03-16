@@ -3,14 +3,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
-
 import SearchIcon from '@material-ui/icons/Search';
 
-import '../../styles/components/actions.scss';
+import '../../../styles/components/actions.scss';
 import { useState } from 'react';
 
-const GetQuestionButton = ({ getOverview }) => {
-  const [showForm, setShowForm] = useState(false);
+const Search = ({ getOverview, withForm }) => {
+  const [showForm, setShowForm] = useState(withForm);
   const [question, setQuestion] = useState();
 
   const handleClick = () => {
@@ -28,7 +27,7 @@ const GetQuestionButton = ({ getOverview }) => {
   };
 
   return (
-    <div className="get-question">
+    <div>
       <IconButton>
         <SearchIcon
           fontSize="large"
@@ -38,7 +37,6 @@ const GetQuestionButton = ({ getOverview }) => {
           onClick={handleClick}
         />
       </IconButton>
-
       {showForm && (
         <FormControl className="get-question__form" variant="outlined">
           <InputLabel fullWidth>Enter the exact question</InputLabel>
@@ -63,4 +61,4 @@ const GetQuestionButton = ({ getOverview }) => {
   );
 };
 
-export default GetQuestionButton;
+export default Search;

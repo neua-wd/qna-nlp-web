@@ -4,9 +4,8 @@ import axios from 'axios';
 import Overview from './screens/Overview';
 import Details from './screens/Details';
 import ScreenSwitcher from './components/ScreenSwitcher';
-import GetQuestionButton from './components/GetQuestionButton';
+import Actions from './components/Actions';
 import EditFactForm from './components/EditFactForm';
-import AddFactButton from './components/AddFactButton';
 import AddFactForm from './components/AddFactForm';
 import NewFactTemplates from './components/NewFactTemplates';
 import Suggestions from './components/Suggestions';
@@ -29,14 +28,16 @@ function App() {
 
   const getOverview = async question => {
     setLoading(true);
+    let res = { data: {} };
 
     try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_QNA_NLP_API}/overview`,
-        {
+      if (question) {
+        res = await axios.get(`${process.env.REACT_APP_QNA_NLP_API}/overview`, {
           params: { question },
-        }
-      );
+        });
+      } else {
+        res = await axios.get(`${process.env.REACT_APP_QNA_NLP_API}/overview`);
+      }
 
       const data = res.data;
       data.current_explanation = 'explanation';
@@ -86,9 +87,9 @@ function App() {
     <div className="app">
       {overview && <ScreenSwitcher switchScreen={switchScreen} />}
       <div className="actions">
-        <GetQuestionButton getOverview={getOverview} />
-        <AddFactButton
-          hidden={screen == 'overview'}
+        <Actions
+          getOverview={getOverview}
+          hide_add_fact={screen == 'overview'}
           setAddingFact={setAddingFact}
         />
       </div>

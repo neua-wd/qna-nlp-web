@@ -1,7 +1,7 @@
 import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import IconButton from '@material-ui/core/IconButton';
 
-import '../../styles/components/actions.scss';
+import '../../../styles/components/actions.scss';
 
 const AddFactButton = ({ hidden, setAddingFact }) => {
   const handleClick = () => {
