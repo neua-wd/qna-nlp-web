@@ -1,3 +1,5 @@
+import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
+
 import '../../styles/components/templates.scss';
 
 const NewFactTemplates = ({ templates, setAddingFact, setTemplates }) => {
@@ -15,10 +17,24 @@ const NewFactTemplates = ({ templates, setAddingFact, setTemplates }) => {
     setTemplates(null);
   };
 
+  const goBack = () => {
+    setAddingFact({
+      table_name: 'NO-TEMPLATE',
+      new_fact: { '[UNLABELED]': '' },
+    });
+
+    setTemplates(null);
+  };
+
   return (
     <div className="templates-container">
       <div className="templates">
-        <div className="header">Please choose a template for the new fact</div>
+        <div className="header">
+          <span className="back-button">
+            <ArrowBackIosOutlinedIcon onClick={goBack} />
+          </span>
+          Please choose a template for the new fact
+        </div>
         <div className="templates__rows">
           <ul>
             {Object.entries(templates).map((template, index) => {

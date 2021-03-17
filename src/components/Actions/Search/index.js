@@ -3,14 +3,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
-
 import SearchIcon from '@material-ui/icons/Search';
 
-import '../../styles/components/actions.scss';
+import '../../../styles/components/actions.scss';
 import { useState } from 'react';
 
-const GetQuestionButton = ({ getOverview }) => {
-  const [showForm, setShowForm] = useState(false);
+const Search = ({ getOverview, withForm, withDesc }) => {
+  const [showForm, setShowForm] = useState(withForm);
+  const [showDesc, setShowDesc] = useState(false);
   const [question, setQuestion] = useState();
 
   const handleClick = () => {
@@ -28,8 +28,11 @@ const GetQuestionButton = ({ getOverview }) => {
   };
 
   return (
-    <div className="get-question">
-      <IconButton>
+    <div>
+      <IconButton
+        onMouseEnter={() => setShowDesc(true)}
+        onMouseLeave={() => setShowDesc(false)}
+      >
         <SearchIcon
           fontSize="large"
           className="get-question__icon"
@@ -38,7 +41,6 @@ const GetQuestionButton = ({ getOverview }) => {
           onClick={handleClick}
         />
       </IconButton>
-
       {showForm && (
         <FormControl className="get-question__form" variant="outlined">
           <InputLabel fullWidth>Enter the exact question</InputLabel>
@@ -59,8 +61,11 @@ const GetQuestionButton = ({ getOverview }) => {
           />
         </FormControl>
       )}
+      <div className={`description${showDesc && withDesc ? '' : '--hidden'}`}>
+        Search
+      </div>
     </div>
   );
 };
 
-export default GetQuestionButton;
+export default Search;

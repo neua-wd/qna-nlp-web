@@ -4,12 +4,14 @@ import Explanation from '../../components/Explanation';
 import Spinner from '../../components/Spinner';
 
 import '../../styles/screens/overview.scss';
+import Instructions from '../../components/Instructions';
 
 // The Overview screen contains the overview of a particular question
 // Includes the question the choices and the explanation
 const Overview = ({
   clearComponents,
   overview,
+  getOverview,
   setOverview,
   getTemplates,
   setAddingFact,
@@ -35,11 +37,7 @@ const Overview = ({
           />
         </div>
       ) : (
-        <div>
-          Please search for an exact question <br />
-          (eg. What remains in the same location in the sky of the Northern
-          Hemisphere each night?)
-        </div>
+        <Instructions getOverview={getOverview} />
       )}
     </div>
   );

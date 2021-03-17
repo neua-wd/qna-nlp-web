@@ -7,6 +7,29 @@
   box-shadow: none;
 }
 
+.description {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(63, 81, 181, 0.3);
+  padding: 6px;
+  font-size: 14px;
+  color: #3F51B5;
+  border-color: #3F51B5;
+  border-width: 1px;
+  border-style: solid;
+
+  &--hidden {
+    display: none;
+  }
+
+  &--relative {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .get-question {
   display: flex;
   align-items: center;

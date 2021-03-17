@@ -1,4 +1,4 @@
-import AddFactButton from '../AddFactButton';
+import AddFactButton from '../Actions/AddFactButton';
 
 import '../../styles/components/explanation.scss';
 
@@ -39,6 +39,7 @@ const Explanation = ({ explanation, correct, getTemplates, setAddingFact }) => {
         disabled={false}
         getTemplates={getTemplates}
         setAddingFact={setAddingFact}
+        inExplanation={true}
       />
     </div>
   );
