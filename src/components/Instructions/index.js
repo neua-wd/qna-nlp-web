@@ -8,11 +8,11 @@ const Instructions = ({ getOverview }) => {
       (eg. What remains in the same location in the sky of the Northern
       Hemisphere each night?) <br />
       <br />
-      <Search getOverview={getOverview} withForm={true} />
+      <Search getOverview={getOverview} withForm={true} withDesc={false} />
       <br />
       or <br />
       Get a random question
-      <Random getOverview={getOverview} />
+      <Random getOverview={getOverview} withDesc={false} />
     </div>
   );
 };

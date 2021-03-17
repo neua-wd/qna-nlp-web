@@ -8,8 +8,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import '../../../styles/components/actions.scss';
 import { useState } from 'react';
 
-const Search = ({ getOverview, withForm }) => {
+const Search = ({ getOverview, withForm, withDesc }) => {
   const [showForm, setShowForm] = useState(withForm);
+  const [showDesc, setShowDesc] = useState(false);
   const [question, setQuestion] = useState();
 
   const handleClick = () => {
@@ -28,7 +29,10 @@ const Search = ({ getOverview, withForm }) => {
 
   return (
     <div>
-      <IconButton>
+      <IconButton
+        onMouseEnter={() => setShowDesc(true)}
+        onMouseLeave={() => setShowDesc(false)}
+      >
         <SearchIcon
           fontSize="large"
           className="get-question__icon"
@@ -57,6 +61,9 @@ const Search = ({ getOverview, withForm }) => {
           />
         </FormControl>
       )}
+      <div className={`description${showDesc && withDesc ? '' : '--hidden'}`}>
+        Search
+      </div>
     </div>
   );
 };
