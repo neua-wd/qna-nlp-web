@@ -1,0 +1,63 @@
+.actions {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  margin-left: 20px;
+  background: none;
+  box-shadow: none;
+}
+
+.description {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(63, 81, 181, 0.3);
+  padding: 6px;
+  font-size: 14px;
+  color: #3F51B5;
+  border-color: #3F51B5;
+  border-width: 1px;
+  border-style: solid;
+
+  &--hidden {
+    display: none;
+  }
+
+  &--relative {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.get-question {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+
+  &__icon {
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &__form {
+    width: 550px;
+  }
+
+  &__button {
+    cursor: pointer;
+  }
+}
+
+.add-fact {
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+}

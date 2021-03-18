@@ -1,0 +1,11 @@
+.overview {
+  margin-top: 50px;
+  text-align: center;
+  z-index: 0;
+  font-family: Geneva, Verdana, sans-serif;
+
+  &--blurred {
+    opacity: 0.6;
+    filter: blur(6px);
+  }
+}

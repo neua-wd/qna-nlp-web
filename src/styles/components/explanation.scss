@@ -1,0 +1,22 @@
+.explanation {
+  margin: 10px 300px 0 300px;
+  padding: 40px;
+  border-radius: 6px;
+  text-align: center;
+  overflow-y: scroll;
+  height: 270px;
+
+  &--correct {
+    background-color: #d8ffc4;
+  }
+
+  &--incorrect {
+    background-color: #ffd4d4;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,22 @@
+.question {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  &__box {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    padding: 20px;
+    background-color: #d4d4d4;
+    border-radius: 6px;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &__text {
+    background-color: #d4d4d4;
+  }
+}
