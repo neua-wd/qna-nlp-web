@@ -1,8 +1,16 @@
-import AddFactButton from '../Actions/AddFactButton';
+import { ControlCameraOutlined, UpdateSharp } from '@material-ui/icons';
+import axios from 'axios';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 import '../../styles/components/explanation.scss';
 
-const Explanation = ({ explanation, correct, getTemplates, setAddingFact }) => {
+const Explanation = ({
+  explanation,
+  correct,
+  question_id,
+  current_explanation,
+  setOverview,
+}) => {
   // takes fact as an object. eg:
   //  {
   //    "ACTOR/WHO": "moving",
@@ -19,6 +27,26 @@ const Explanation = ({ explanation, correct, getTemplates, setAddingFact }) => {
     return sentence;
   };
 
+  const handleDragEnd = async ({ source, destination }) => {
+    const [moved] = explanation.splice(source.index, 1);
+    explanation.splice(destination.index, 0, moved);
+
+    const new_order = explanation.map(fact => fact['[SKIP] UID']);
+
+    const res = await axios.patch(
+      `${process.env.REACT_APP_QNA_NLP_API}/overview`,
+      {
+        question_id: question_id,
+        explanation_column: current_explanation,
+        new_order: new_order,
+      }
+    );
+
+    const updated_overview = res.data;
+    updated_overview.current_explanation = current_explanation;
+    setOverview(updated_overview);
+  };
+
   return (
     <div
       className={`explanation explanation--${
@@ -26,21 +54,40 @@ const Explanation = ({ explanation, correct, getTemplates, setAddingFact }) => {
       }`}
     >
       <div className="explanation__title">Explanation</div>
-      {explanation?.map((fact, index) => {
-        return (
-          <div key={index}>
-            {index + 1 + '. ' + toSentence(fact)}
-            <br />
-            <br />
-          </div>
-        );
-      })}
-      <AddFactButton
-        disabled={false}
-        getTemplates={getTemplates}
-        setAddingFact={setAddingFact}
-        inExplanation={true}
-      />
+      <DragDropContext onDragEnd={result => handleDragEnd(result)}>
+        <Droppable droppableId="explanation" key="explanation">
+          {(provided, snapshot) => {
+            return (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                {explanation?.map((fact, index) => {
+                  return (
+                    <Draggable
+                      draggableId={index.toString()}
+                      index={index}
+                      key={index}
+                    >
+                      {(provided, snapshot) => {
+                        return (
+                          <div
+                            className="explanation__sentence-box"
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <div className="explanation__sentence" key={index}>
+                              {index + 1 + '. ' + toSentence(fact)}
+                            </div>
+                          </div>
+                        );
+                      }}
+                    </Draggable>
+                  );
+                })}
+              </div>
+            );
+          }}
+        </Droppable>
+      </DragDropContext>
     </div>
   );
 };

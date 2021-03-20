@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import '../../../styles/components/actions.scss';
 
-const AddFactButton = ({ hidden, setAddingFact, inExplanation }) => {
+const AddFactButton = ({ setAddingFact, inExplanation }) => {
   const [showDesc, setShowDesc] = useState(false);
 
   const handleClick = () => {
@@ -15,11 +15,10 @@ const AddFactButton = ({ hidden, setAddingFact, inExplanation }) => {
   };
 
   return (
-    <div>
+    <div className="add-fact-btn">
       <IconButton
         aria-label="Add a new fact"
         titleAccess="meaning"
-        style={hidden ? { display: 'none' } : {}}
         onClick={handleClick}
         onMouseEnter={() => setShowDesc(true)}
         onMouseLeave={() => setShowDesc(false)}
@@ -36,7 +35,7 @@ const AddFactButton = ({ hidden, setAddingFact, inExplanation }) => {
           inExplanation ? 'description--relative' : ''
         }`}
       >
-        Add Fact
+        Add a new fact to the explanation
       </div>
     </div>
   );

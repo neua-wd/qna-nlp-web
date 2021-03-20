@@ -17,7 +17,7 @@ const Random = ({ getOverview, withDesc }) => {
         <CasinoTwoToneIcon fontSize="large" className="get-question__icon" />
       </IconButton>
       <div className={`description${showDesc && withDesc ? '' : '--hidden'}`}>
-        Random Question
+        Get a random question
       </div>
     </div>
   );

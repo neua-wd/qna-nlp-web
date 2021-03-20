@@ -13,11 +13,10 @@ const Overview = ({
   overview,
   getOverview,
   setOverview,
-  getTemplates,
-  setAddingFact,
   loading,
   blurred,
 }) => {
+  console.log(overview);
   return (
     <div
       className={`overview${blurred ? '--blurred' : ''}`}
@@ -32,8 +31,9 @@ const Overview = ({
           <Explanation
             explanation={overview[overview.current_explanation]}
             correct={overview.current_explanation == 'explanation'}
-            getTemplates={getTemplates}
-            setAddingFact={setAddingFact}
+            question_id={overview.question_id}
+            current_explanation={overview.current_explanation}
+            setOverview={setOverview}
           />
         </div>
       ) : (
