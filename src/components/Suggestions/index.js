@@ -4,12 +4,10 @@ import '../../styles/components/templates.scss';
 
 const Suggestions = ({ suggestions, setSuggestions, setAddingFact }) => {
   const toSentence = fact => {
-    console.log(fact);
     let sentence = '';
     for (const column_name in fact) {
       if (!column_name.includes('[SKIP]')) sentence += fact[column_name] + ' ';
     }
-    console.log(sentence);
 
     return sentence;
   };
