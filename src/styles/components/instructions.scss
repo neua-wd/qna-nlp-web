@@ -1,0 +1,11 @@
+.instructions {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+
+  &__card {
+    padding: 20px;
+  }
+}
