@@ -6,13 +6,14 @@
   overflow-y: scroll;
   height: 270px;
   margin: auto;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 
   &--correct {
-    background-color: #d8ffc4;
+    background-color: rgba(219, 235, 255, 0.7);
   }
 
   &--incorrect {
-    background-color: #ffd4d4;
+    background-color: rgba(255, 254, 247);
   }
 
   &__title {
@@ -36,9 +37,13 @@
     align-items: center;
     margin-top: 10px;
 
-    &:hover {
+    &:hover, &:active {
       transform: scale(1.1);
-      box-shadow: 0px 1px 5px #c4c4c4;
+      box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    }
+
+    &--hidden {
+      opacity: 0;
     }
 
     cursor: pointer;
