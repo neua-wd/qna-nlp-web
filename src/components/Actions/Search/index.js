@@ -29,38 +29,45 @@ const Search = ({ getOverview, withForm, withDesc }) => {
 
   return (
     <div>
-      <IconButton
-        onMouseEnter={() => setShowDesc(true)}
-        onMouseLeave={() => setShowDesc(false)}
-      >
-        <SearchIcon
-          fontSize="large"
-          className="get-question__icon"
-          color="primary"
-          alt="search icon"
-          onClick={handleClick}
-        />
-      </IconButton>
-      {showForm && (
-        <FormControl className="get-question__form" variant="outlined">
-          <InputLabel fullWidth>Enter the exact question</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-amount"
-            value={question}
-            onChange={onChange}
-            onSubmit={onSubmit}
-            endAdornment={
-              <InputAdornment
-                onClick={onSubmit}
-                className="get-question__button"
-              >
-                Submit
-              </InputAdornment>
-            }
-            labelWidth={60}
+      <div className="get-question">
+        <IconButton
+          onMouseEnter={() => setShowDesc(true)}
+          onMouseLeave={() => setShowDesc(false)}
+        >
+          <SearchIcon
+            fontSize="large"
+            className="get-question__icon"
+            color="primary"
+            alt="search icon"
+            onClick={handleClick}
           />
-        </FormControl>
-      )}
+        </IconButton>
+        {showForm && (
+          <form onSubmit={onSubmit}>
+            <FormControl
+              className="get-question__form"
+              variant="outlined"
+              onSubmit={onSubmit}
+            >
+              <InputLabel>Enter the exact question</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment"
+                value={question}
+                onChange={onChange}
+                endAdornment={
+                  <InputAdornment
+                    onClick={onSubmit}
+                    className="get-question__button"
+                  >
+                    Submit
+                  </InputAdornment>
+                }
+                labelWidth={60}
+              />
+            </FormControl>
+          </form>
+        )}
+      </div>
       <div className={`description${showDesc && withDesc ? '' : '--hidden'}`}>
         Search
       </div>
