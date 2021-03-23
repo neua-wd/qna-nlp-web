@@ -37,12 +37,13 @@ const AddFactForm = ({
     try {
       setAddingFact(null);
       setLoading(true);
+
       const res = await axios.post(
         `${process.env.REACT_APP_QNA_NLP_API}/fact`,
         {
           table_name: adding_fact.table_name,
           to_question: overview.question_id,
-          explanation: overview.current_explanation,
+          explanation_column: overview.current_explanation,
           new_fact: adding_fact.new_fact,
         }
       );
@@ -51,6 +52,7 @@ const AddFactForm = ({
         ...res.data,
         current_explanation: overview.current_explanation,
       });
+
       setLoading(false);
     } catch (e) {
       console.log(e);
