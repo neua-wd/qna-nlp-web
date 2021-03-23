@@ -8,7 +8,7 @@ const Instructions = ({ getOverview }) => {
   return (
     <div className="instructions">
       <Card className="instructions__card">
-        Please search for an exact question <br />
+        Please enter the exact question <br />
         (eg. What remains in the same location in the sky of the Northern
         Hemisphere each night?) <br />
         <br />
