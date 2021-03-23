@@ -8,6 +8,7 @@ import Explanation from '../../components/Explanation';
 import Spinner from '../../components/Spinner';
 import Instructions from '../../components/Instructions';
 import Bin from '../../components/Bin';
+import DeletionPrompt from '../../components/DeletionPrompt';
 
 import '../../styles/screens/overview.scss';
 
@@ -23,6 +24,8 @@ const Overview = ({
 }) => {
   const [showBin, setShowBin] = useState(false);
   const [factInBin, setFactInBin] = useState();
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [overviewBeforeDeletion, setOverviewBeforeDeletion] = useState();
 
   const handleDragEnd = ({ source, destination }) => {
     setShowBin(false);
@@ -36,25 +39,18 @@ const Overview = ({
         new_facts = changeOrder(source, destination);
         updateFacts(new_facts);
       } else if (destination.droppableId == 'bin') {
+        setOverviewBeforeDeletion(overview);
+
         const deleted = overview[overview.current_explanation].filter(
-          (fact, index) => index !== source.index
+          fact => fact['[SKIP] UID'] !== factInBin
         );
 
         updateLocally(deleted);
-        updateFacts(deleted.map(fact => fact['[SKIP] UID']));
+        setShowPrompt(true);
       }
-
-      setFactInBin(null);
     }
-  };
 
-  const changeOrder = (source, destination) => {
-    const explanation = overview[overview.current_explanation];
-    const [moved] = explanation.splice(source.index, 1);
-
-    explanation.splice(destination.index, 0, moved);
-
-    return explanation.map(fact => fact['[SKIP] UID']);
+    setFactInBin(null);
   };
 
   const updateLocally = new_facts => {
@@ -84,6 +80,15 @@ const Overview = ({
     setOverview(updated_overview);
   };
 
+  const changeOrder = (source, destination) => {
+    const explanation = overview[overview.current_explanation];
+    const [moved] = explanation.splice(source.index, 1);
+
+    explanation.splice(destination.index, 0, moved);
+
+    return explanation.map(fact => fact['[SKIP] UID']);
+  };
+
   return (
     <div
       className={`overview${blurred ? '--blurred' : ''}`}
@@ -95,7 +100,6 @@ const Overview = ({
         <div>
           <DragDropContext
             onDragEnd={result => handleDragEnd(result)}
-            // onDragUpdate={update => handleUpdate(update)}
             onDragStart={() => setShowBin(true)}
           >
             <Question question={overview.question} />
@@ -107,6 +111,18 @@ const Overview = ({
             />
             <Bin showBin={showBin} setFactInBin={setFactInBin} />
           </DragDropContext>
+          {overviewBeforeDeletion && (
+            <DeletionPrompt
+              showPrompt={showPrompt}
+              setShowPrompt={setShowPrompt}
+              factInBin={factInBin}
+              overview={overview}
+              setOverview={setOverview}
+              overviewBeforeDeletion={overviewBeforeDeletion}
+              setOverviewBeforeDeletion={setOverviewBeforeDeletion}
+              updateFacts={updateFacts}
+            />
+          )}
         </div>
       ) : (
         <Instructions getOverview={getOverview} />
