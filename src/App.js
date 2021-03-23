@@ -9,6 +9,7 @@ import EditFactForm from './components/EditFactForm';
 import AddFactForm from './components/AddFactForm';
 import NewFactTemplates from './components/NewFactTemplates';
 import Suggestions from './components/Suggestions';
+import NoQuestionAlert from './components/NoQuestionAlert';
 
 import './styles/app.scss';
 import './styles/components/actions.scss';
@@ -21,6 +22,7 @@ function App() {
   const [suggestions, setSuggestions] = useState();
   const [templates, setTemplates] = useState();
   const [loading, setLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
@@ -39,10 +41,14 @@ function App() {
         res = await axios.get(`${process.env.REACT_APP_QNA_NLP_API}/overview`);
       }
 
-      const data = res.data;
-      data.current_explanation = 'explanation';
+      if (res.data.error && res.data.error[0] == 'Question does not exist') {
+        setShowAlert(true);
+      } else {
+        const data = res.data;
+        data.current_explanation = 'explanation';
 
-      setOverview(data);
+        setOverview(data);
+      }
 
       setLoading(false);
     } catch (e) {
@@ -149,6 +155,7 @@ function App() {
         setSuggestions={setSuggestions}
         setLoading={setLoading}
       />
+      <NoQuestionAlert showAlert={showAlert} setShowAlert={setShowAlert} />
     </div>
   );
 }

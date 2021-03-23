@@ -35,7 +35,7 @@ const DeletionPrompt = ({
         {'Do you want to remove the fact from this explanation?'}
       </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
+        <DialogContentText>
           Only remove a fact if it does not explain the reasoning for the
           decision <br />
           This will only remove it from this particular explanation and NOT from
