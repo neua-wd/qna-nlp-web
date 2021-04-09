@@ -19,6 +19,7 @@ const Overview = ({
   overview,
   getOverview,
   setOverview,
+  setEditingFact,
   loading,
   blurred,
 }) => {
@@ -108,6 +109,7 @@ const Overview = ({
               explanation={overview[overview.current_explanation]}
               correct={overview.current_explanation == 'explanation'}
               factInBin={factInBin}
+              setEditingFact={setEditingFact}
             />
             <Bin showBin={showBin} setFactInBin={setFactInBin} />
           </DragDropContext>

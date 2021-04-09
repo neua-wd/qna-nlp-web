@@ -125,8 +125,9 @@ function App() {
           setOverview={setOverview}
           getTemplates={getTemplates}
           setAddingFact={setAddingFact}
+          setEditingFact={setEditingFact}
           loading={loading}
-          blurred={adding_fact || templates || suggestions}
+          blurred={adding_fact || editing_fact || templates || suggestions}
         />
       ) : (
         <Details

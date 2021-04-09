@@ -1,6 +1,6 @@
 import { Draggable } from 'react-beautiful-dnd';
 
-const Sentence = ({ index, fact, hidden }) => {
+const Sentence = ({ index, fact, hidden, setEditingFact }) => {
   const toSentence = fact => {
     let sentence = '';
     for (const column_name in fact) {
@@ -24,6 +24,9 @@ const Sentence = ({ index, fact, hidden }) => {
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
+            onClick={e => {
+              if (!e.defaultPrevented) setEditingFact(fact);
+            }}
           >
             <div
               className={`explanation__sentence${hidden ? '--hidden' : ''}`}

@@ -4,7 +4,7 @@ import Sentence from './Sentence';
 
 import '../../styles/components/explanation.scss';
 
-const Explanation = ({ explanation, correct, factInBin }) => {
+const Explanation = ({ explanation, correct, factInBin, setEditingFact }) => {
   return (
     <div
       className={`explanation explanation--${
@@ -23,6 +23,7 @@ const Explanation = ({ explanation, correct, factInBin }) => {
                     index={index}
                     fact={fact}
                     hidden={fact['[SKIP] UID'] == factInBin}
+                    setEditingFact={setEditingFact}
                   />
                 );
               })}
