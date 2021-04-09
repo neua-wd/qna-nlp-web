@@ -91,7 +91,7 @@ function App() {
 
   return (
     <div className="app">
-      {overview && <ScreenSwitcher switchScreen={switchScreen} />}
+      {overview && <ScreenSwitcher toggle={switchScreen} />}
       {overview && (
         <Actions
           getOverview={getOverview}
@@ -126,6 +126,7 @@ function App() {
           getTemplates={getTemplates}
           setAddingFact={setAddingFact}
           setEditingFact={setEditingFact}
+          switchScreen={switchScreen}
           loading={loading}
           blurred={adding_fact || editing_fact || templates || suggestions}
         />

@@ -1,13 +1,13 @@
 import '../../../styles/components/facts.scss';
 
-const Fact = ({ fact, index, setEditingFact }) => {
+const Fact = ({ fact, index, setEditingFact, compact }) => {
   const handleClick = () => {
     setEditingFact(fact);
   };
 
   return (
     <div
-      className="fact fact--selectable"
+      className={`fact fact--selectable ${compact ? 'fact--compact' : ''}`}
       onClick={e => {
         if (!e.defaultPrevented) handleClick();
       }}
