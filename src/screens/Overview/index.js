@@ -19,12 +19,14 @@ const Overview = ({
   overview,
   getOverview,
   setOverview,
+  setEditingFact,
   loading,
   blurred,
 }) => {
   const [showBin, setShowBin] = useState(false);
   const [factInBin, setFactInBin] = useState();
   const [showPrompt, setShowPrompt] = useState(false);
+  const [bodyLoading, setBodyLoading] = useState(false);
   const [overviewBeforeDeletion, setOverviewBeforeDeletion] = useState();
 
   const handleDragEnd = ({ source, destination }) => {
@@ -68,6 +70,7 @@ const Overview = ({
     const res = await axios.patch(
       `${process.env.REACT_APP_QNA_NLP_API}/overview`,
       {
+        update_type: 'facts',
         question_id: overview.question_id,
         explanation_column: current_explanation,
         new_facts: new_facts,
@@ -103,12 +106,22 @@ const Overview = ({
             onDragStart={() => setShowBin(true)}
           >
             <Question question={overview.question} />
-            <Choices overview={overview} setOverview={setOverview} />
-            <Explanation
-              explanation={overview[overview.current_explanation]}
-              correct={overview.current_explanation == 'explanation'}
-              factInBin={factInBin}
-            />
+            {bodyLoading ? (
+              <Spinner />
+            ) : (
+              <div>
+                <Choices
+                  overview={overview}
+                  setOverview={setOverview}
+                  setBodyLoading={setBodyLoading}
+                />
+                <Explanation
+                  overview={overview}
+                  factInBin={factInBin}
+                  setEditingFact={setEditingFact}
+                />
+              </div>
+            )}
             <Bin showBin={showBin} setFactInBin={setFactInBin} />
           </DragDropContext>
           {overviewBeforeDeletion && (

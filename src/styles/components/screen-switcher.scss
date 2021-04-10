@@ -2,4 +2,10 @@
   position: absolute;
   top: 20px;
   right: 20px;
+
+  &--in-box {
+    position: relative;
+    float: right;
+    top: -5px;
+  }
 }

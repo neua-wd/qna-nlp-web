@@ -1,5 +1,4 @@
 import Slide from '@material-ui/core/Slide';
-import IconButton from '@material-ui/core/IconButton';
 import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
 import { Droppable } from 'react-beautiful-dnd';
 

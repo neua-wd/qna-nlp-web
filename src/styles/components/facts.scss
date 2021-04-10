@@ -27,6 +27,17 @@
       cursor: pointer;
     }
   }
+
+  &--compact {
+    overflow-x: scroll;
+    margin: 5px 0 0 0;
+    border: none;
+
+    &:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+  }
 }
 
 .form {

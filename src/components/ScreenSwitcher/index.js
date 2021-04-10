@@ -3,13 +3,13 @@ import Switch from '@material-ui/core/Switch';
 
 import '../../styles/components/screen-switcher.scss';
 
-const ScreenSwitcher = ({ switchScreen }) => {
+const ScreenSwitcher = ({ toggle, inBox }) => {
   return (
     <FormControlLabel
-      className="screen-switcher"
+      className={`screen-switcher ${inBox ? 'screen-switcher--in-box' : ''}`}
       control={<Switch color="primary" />}
       label="Detailed"
-      onChange={switchScreen}
+      onChange={toggle}
     />
   );
 };

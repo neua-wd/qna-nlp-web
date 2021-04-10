@@ -1,9 +1,10 @@
 import Choice from './Choice';
+
 import '../../styles/components/choices.scss';
 
 // Choices component
 // For each choice (ie. A/B/C/D) renders a choice component
-const Choices = ({ overview, setOverview }) => {
+const Choices = ({ overview, setOverview, setBodyLoading }) => {
   return (
     <div className="choices">
       {overview.choices &&
@@ -14,6 +15,7 @@ const Choices = ({ overview, setOverview }) => {
               sentence={value}
               overview={overview}
               setOverview={setOverview}
+              setBodyLoading={setBodyLoading}
             />
           );
         })}
