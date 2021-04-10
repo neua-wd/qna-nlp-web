@@ -4,7 +4,7 @@ import '../../../styles/components/choice.scss';
 const Choice = ({ letter, sentence, overview, setOverview }) => {
   const handleClick = letter => {
     const explanation =
-      letter == overview.answer ? 'explanation' : 'explanation' + letter;
+      letter == overview.answer ? 'explanation' : 'incorrect' + letter;
     setOverview({ ...overview, current_explanation: explanation });
   };
 
