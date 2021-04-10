@@ -69,6 +69,7 @@ const Overview = ({
     const res = await axios.patch(
       `${process.env.REACT_APP_QNA_NLP_API}/overview`,
       {
+        update_type: 'facts',
         question_id: overview.question_id,
         explanation_column: current_explanation,
         new_facts: new_facts,
