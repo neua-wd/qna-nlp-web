@@ -8,26 +8,35 @@ import '../../styles/components/explanation.scss';
 
 import { useState } from 'react';
 
-const Explanation = ({ explanation, correct, factInBin, setEditingFact }) => {
+const Explanation = ({ overview, factInBin, setEditingFact }) => {
   const [detailed, setDetailed] = useState(false);
+
+  const explanation = overview[overview.current_explanation];
+  const current_explanation = overview.current_explanation;
 
   const toggleDetailed = () => {
     setDetailed(!detailed);
   };
 
+  const currentLetter = () => {
+    return current_explanation == 'explanation'
+      ? overview.answer
+      : current_explanation.charAt(current_explanation.length - 1);
+  };
+
   return (
     <div
       className={`explanation explanation--${
-        correct ? 'correct' : 'incorrect'
+        current_explanation == 'explanation' ? 'correct' : 'incorrect'
       }`}
       elevation={3}
     >
       <div className="explanation__header">
         <ScreenSwitcher toggle={toggleDetailed} inBox={true} />
         <div className="explanation__title">
-          {correct
-            ? 'Explanation (why this is correct)'
-            : 'Contrastive Explanation (why this is incorrect)'}
+          {current_explanation == 'explanation'
+            ? `Explanation (why ${currentLetter()} is correct)`
+            : `Contrastive Explanation (why ${currentLetter()} is incorrect)`}
         </div>
       </div>
       <div className="explanation__body">

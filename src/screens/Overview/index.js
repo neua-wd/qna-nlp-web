@@ -106,8 +106,7 @@ const Overview = ({
             <Question question={overview.question} />
             <Choices overview={overview} setOverview={setOverview} />
             <Explanation
-              explanation={overview[overview.current_explanation]}
-              correct={overview.current_explanation == 'explanation'}
+              overview={overview}
               factInBin={factInBin}
               setEditingFact={setEditingFact}
             />
