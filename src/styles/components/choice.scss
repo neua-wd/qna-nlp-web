@@ -31,3 +31,17 @@
     box-shadow: 0px 2px 9px #c4c4c4;
   }
 }
+
+.mark-as-correct {
+  background-color: rgba(219, 235, 255, 0.7);
+  width: fit-content;
+  margin: auto;
+  padding: 5px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 9px #c4c4c4;
+  cursor: pointer;
+
+  &--hidden {
+    opacity: 0;
+  }
+}

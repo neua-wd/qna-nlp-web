@@ -26,6 +26,7 @@ const Overview = ({
   const [showBin, setShowBin] = useState(false);
   const [factInBin, setFactInBin] = useState();
   const [showPrompt, setShowPrompt] = useState(false);
+  const [bodyLoading, setBodyLoading] = useState(false);
   const [overviewBeforeDeletion, setOverviewBeforeDeletion] = useState();
 
   const handleDragEnd = ({ source, destination }) => {
@@ -105,12 +106,22 @@ const Overview = ({
             onDragStart={() => setShowBin(true)}
           >
             <Question question={overview.question} />
-            <Choices overview={overview} setOverview={setOverview} />
-            <Explanation
-              overview={overview}
-              factInBin={factInBin}
-              setEditingFact={setEditingFact}
-            />
+            {bodyLoading ? (
+              <Spinner />
+            ) : (
+              <div>
+                <Choices
+                  overview={overview}
+                  setOverview={setOverview}
+                  setBodyLoading={setBodyLoading}
+                />
+                <Explanation
+                  overview={overview}
+                  factInBin={factInBin}
+                  setEditingFact={setEditingFact}
+                />
+              </div>
+            )}
             <Bin showBin={showBin} setFactInBin={setFactInBin} />
           </DragDropContext>
           {overviewBeforeDeletion && (
