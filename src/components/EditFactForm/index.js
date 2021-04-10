@@ -17,11 +17,11 @@ const EditFactForm = ({
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await apiUpdateFact(editing_fact);
+      const to_submit = editing_fact;
+      setEditingFact(null);
+      await apiUpdateFact(to_submit);
 
       await getOverview(overview.question);
-
-      setEditingFact(null);
     } catch (e) {
       setOverview(overview);
       console.log(e);
