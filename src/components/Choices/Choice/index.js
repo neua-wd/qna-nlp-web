@@ -24,8 +24,6 @@ const Choice = ({
   const changeAnswer = async letter => {
     setBodyLoading(true);
 
-    const current_explanation = overview.current_explanation;
-
     const res = await axios.patch(
       `${process.env.REACT_APP_QNA_NLP_API}/overview`,
       {
@@ -36,7 +34,7 @@ const Choice = ({
     );
 
     const updated_overview = res.data;
-    updated_overview.current_explanation = current_explanation;
+    updated_overview.current_explanation = 'explanation';
 
     setOverview(updated_overview);
     setBodyLoading(false);
