@@ -16,7 +16,6 @@ const Choice = ({ letter, sentence, overview, setOverview }) => {
     return overview.current_explanation == 'incorrect' + letter;
   };
 
-  console.log(overview.current_explanation);
   return (
     <div
       className={`choice choice--${
