@@ -24,7 +24,11 @@ const Explanation = ({ explanation, correct, factInBin, setEditingFact }) => {
     >
       <div className="explanation__header">
         <ScreenSwitcher toggle={toggleDetailed} inBox={true} />
-        <div className="explanation__title">Explanation</div>
+        <div className="explanation__title">
+          {correct
+            ? 'Explanation (why this is correct)'
+            : 'Contrastive Explanation (why this is incorrect)'}
+        </div>
       </div>
       <div className="explanation__body">
         <Droppable droppableId="explanation" key="explanation">
