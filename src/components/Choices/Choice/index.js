@@ -8,11 +8,20 @@ const Choice = ({ letter, sentence, overview, setOverview }) => {
     setOverview({ ...overview, current_explanation: explanation });
   };
 
+  const selected = letter => {
+    if (letter == overview.answer) {
+      return overview.current_explanation == 'explanation';
+    }
+
+    return overview.current_explanation == 'incorrect' + letter;
+  };
+
+  console.log(overview.current_explanation);
   return (
     <div
       className={`choice choice--${
         letter == overview.answer ? 'correct' : 'incorrect'
-      }`}
+      } choice${selected(letter) ? '--selected' : ''}`}
       onClick={() => handleClick(letter)}
     >
       <div className="choice__title">{letter}</div>
