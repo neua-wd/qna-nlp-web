@@ -1,5 +1,4 @@
 .explanation {
-  margin-top: 10px;
   width: 800px;
   border-radius: 6px;
   overflow-y: scroll;
@@ -30,7 +29,7 @@
   }
 
   &__body {
-    padding: 0 40px 40px 40px;
+    padding: 10px 40px 0 40px;
   }
 
   &__sentence-box {
@@ -44,7 +43,7 @@
     width: fit-content;
     height: fit-content;
     align-items: center;
-    margin-top: 10px;
+    margin-bottom: 10px;
 
     &:hover,
     &:active {

@@ -2,9 +2,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import '../../styles/components/spinner.scss';
 
-const Spinner = () => {
+const Spinner = ({ boxed }) => {
   return (
-    <div className="spinner">
+    <div className={`spinner${boxed ? '--boxed' : ''}`}>
       <CircularProgress />
     </div>
   );

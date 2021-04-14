@@ -1,26 +1,14 @@
 import IconButton from '@material-ui/core/IconButton';
 import MicTwoToneIcon from '@material-ui/icons/MicTwoTone';
 
-const Mic = ({
-  SpeechRecognition,
-  setMic,
-  micOn,
-  adding_fact,
-  setAddingFact,
-}) => {
+const Mic = ({ SpeechRecognition, setMic, micOn, handleChange }) => {
   const mic = new SpeechRecognition();
   mic.onstart = () => setMic(true);
   mic.onend = () => setMic(false);
 
   mic.onresult = e => {
-    const new_fact = {
-      ...adding_fact.new_fact,
-      '[UNLABELED]': e.results[0][0].transcript,
-    };
-
-    setAddingFact({
-      ...adding_fact,
-      new_fact,
+    handleChange({
+      target: { name: '[UNLABELED]', value: e.results[0][0].transcript },
     });
   };
 

@@ -8,7 +8,6 @@ import Actions from './components/Actions';
 import EditFactForm from './components/EditFactForm';
 import AddFactForm from './components/AddFactForm';
 import NewFactTemplates from './components/NewFactTemplates';
-import Suggestions from './components/Suggestions';
 import NoQuestionAlert from './components/NoQuestionAlert';
 
 import './styles/app.scss';
@@ -108,13 +107,6 @@ function App() {
           setOverview={setOverview}
           adding_fact={adding_fact}
           setLoading={setLoading}
-        />
-      )}
-      {suggestions && (
-        <Suggestions
-          suggestions={suggestions}
-          setAddingFact={setAddingFact}
-          setSuggestions={setSuggestions}
         />
       )}
       {screen == 'overview' ? (
