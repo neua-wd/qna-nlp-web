@@ -131,15 +131,17 @@ function App() {
           blurred={adding_fact || editing_fact || templates || suggestions}
         />
       )}
-      <EditFactForm
-        overview={overview}
-        setOverview={setOverview}
-        editing_fact={editing_fact}
-        setEditingFact={setEditingFact}
-        adding_fact={adding_fact}
-        setAddingFact={setAddingFact}
-        getOverview={getOverview}
-      />
+      {editing_fact && (
+        <EditFactForm
+          overview={overview}
+          setOverview={setOverview}
+          editing_fact={editing_fact}
+          setEditingFact={setEditingFact}
+          adding_fact={adding_fact}
+          setAddingFact={setAddingFact}
+          getOverview={getOverview}
+        />
+      )}
       <AddFactForm
         overview={overview}
         getTemplates={getTemplates}
