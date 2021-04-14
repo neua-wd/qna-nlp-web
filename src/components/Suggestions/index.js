@@ -42,7 +42,7 @@ const Suggestions = ({
         update_type: 'add fact',
         question_id: overview.question_id,
         explanation_column: current_explanation,
-        new_fact: fact['[SKIP] UID'],
+        new_fact_id: fact['[SKIP] UID'],
       }
     );
 
