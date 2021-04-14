@@ -11,7 +11,8 @@
   background-color: rgb(63, 81, 181, 0.3);
   border-radius: 8px;
   padding-bottom: 10px;
-  height: 365px;
+  min-height: 365px;
+  max-height: 420px;
 
   &__header {
     margin-top: 15px;
