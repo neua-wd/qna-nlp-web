@@ -53,15 +53,6 @@ const Suggestions = ({
     setOverviewLoading(false);
   };
 
-  const goBack = () => {
-    setAddingFact({
-      table_name: 'NO-TEMPLATE',
-      new_fact: { '[UNLABELED]': '' },
-    });
-
-    setSuggestions(null);
-  };
-
   return (
     <div className="suggestions-container">
       <div className="suggestions">
