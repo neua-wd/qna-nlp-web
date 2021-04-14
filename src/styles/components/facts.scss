@@ -41,9 +41,16 @@
 }
 
 .form {
-  margin: 0 30px 0 30px;
-  position: relative;
-  bottom: 60%;
+  margin: 380px 30px 0 30px;
+}
+
+.edit-container {
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  align-items: center;
 }
 
 .edit {

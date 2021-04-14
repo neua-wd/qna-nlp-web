@@ -104,7 +104,7 @@ const AddFactForm = ({
               choose from a template
             </button>
           </div>
-          <form className="form" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             {adding_fact && (
               <div
                 className={`fact edit${
