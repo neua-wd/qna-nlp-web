@@ -40,7 +40,7 @@ const AddFactForm = ({
       setTimeout(() => {
         setSuggestionsLoading(true);
         getSuggestions(new_fact['[UNLABELED]']);
-      }, 700)
+      }, 600)
     );
   };
 
