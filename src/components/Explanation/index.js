@@ -3,7 +3,7 @@ import { Slide } from '@material-ui/core';
 
 import Sentence from './Sentence';
 import Fact from '../Facts/Fact';
-import ScreenSwitcher from '../ScreenSwitcher';
+import Toggler from '../Toggler';
 
 import '../../styles/components/explanation.scss';
 
@@ -47,7 +47,7 @@ const Explanation = ({ overview, factInBin, setEditingFact, switchScreen }) => {
         elevation={3}
       >
         <div className="explanation__header">
-          <ScreenSwitcher toggle={toggleDetailed} inBox={true} />
+          <Toggler toggle={toggleDetailed} inBox={true} />
           <div className="explanation__title">
             {current_explanation == 'explanation'
               ? `Explanation (why ${currentLetter()} is correct)`

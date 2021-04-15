@@ -3,7 +3,7 @@ import Switch from '@material-ui/core/Switch';
 
 import '../../styles/components/screen-switcher.scss';
 
-const ScreenSwitcher = ({ toggle, inBox }) => {
+const Toggler = ({ toggle, inBox }) => {
   return (
     <FormControlLabel
       className={`screen-switcher ${inBox ? 'screen-switcher--in-box' : ''}`}
@@ -14,4 +14,4 @@ const ScreenSwitcher = ({ toggle, inBox }) => {
   );
 };
 
-export default ScreenSwitcher;
+export default Toggler;

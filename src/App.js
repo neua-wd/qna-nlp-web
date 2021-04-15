@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import Overview from './screens/Overview';
 import Details from './screens/Details';
-import ScreenSwitcher from './components/ScreenSwitcher';
 import Actions from './components/Actions';
 import EditFactForm from './components/EditFactForm';
 import AddFactForm from './components/AddFactForm';
