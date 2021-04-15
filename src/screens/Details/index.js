@@ -8,6 +8,7 @@ const Details = ({
   clearComponents,
   overview,
   setEditingFact,
+  switchScreen,
   loading,
   blurred,
 }) => {
@@ -20,11 +21,13 @@ const Details = ({
         (loading ? (
           <Spinner />
         ) : (
-          <div className={`details ${blurred ? 'details--blur' : ''}`}>
+          <div>
             <Question question={overview.question} />
             <Facts
-              facts={overview[overview.current_explanation]}
+              hypothesis={overview.answer}
+              facts={overview.categorized_explanation}
               setEditingFact={setEditingFact}
+              switchScreen={switchScreen}
             />
           </div>
         ))}

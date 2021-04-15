@@ -27,7 +27,7 @@ function App() {
     require('dotenv').config();
   }
 
-  const getOverview = async question => {
+  const getOverview = async (question, stay_in_details) => {
     setLoading(true);
     let res = { data: {} };
 
@@ -49,6 +49,9 @@ function App() {
         setOverview(data);
       }
 
+      if (!stay_in_details) {
+        setScreen('overview');
+      }
       setLoading(false);
     } catch (e) {
       console.log(e);
@@ -90,7 +93,6 @@ function App() {
 
   return (
     <div className="app">
-      {overview && <ScreenSwitcher toggle={switchScreen} />}
       {overview && (
         <Actions
           getOverview={getOverview}
@@ -127,6 +129,7 @@ function App() {
           clearComponents={clearComponents}
           overview={overview}
           setEditingFact={setEditingFact}
+          switchScreen={switchScreen}
           loading={loading}
           blurred={adding_fact || editing_fact || templates || suggestions}
         />

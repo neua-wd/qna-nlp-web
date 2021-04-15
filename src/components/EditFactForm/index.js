@@ -21,7 +21,7 @@ const EditFactForm = ({
       setEditingFact(null);
       await apiUpdateFact(to_submit);
 
-      await getOverview(overview.question);
+      await getOverview(overview.question, true);
     } catch (e) {
       setOverview(overview);
       console.log(e);

@@ -20,6 +20,7 @@ const Overview = ({
   getOverview,
   setOverview,
   setEditingFact,
+  switchScreen,
   loading,
   blurred,
 }) => {
@@ -100,7 +101,7 @@ const Overview = ({
       {loading ? (
         <Spinner />
       ) : overview ? (
-        <div>
+        <div style={{ width: '100%' }}>
           <DragDropContext
             onDragEnd={result => handleDragEnd(result)}
             onDragStart={() => setShowBin(true)}
@@ -119,6 +120,7 @@ const Overview = ({
                   overview={overview}
                   factInBin={factInBin}
                   setEditingFact={setEditingFact}
+                  switchScreen={switchScreen}
                 />
               </div>
             )}
