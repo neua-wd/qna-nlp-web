@@ -86,6 +86,17 @@ const AddFactForm = ({
     }
   };
 
+  const clearLabels = () => {
+    setAddingFact({
+      table_name: 'NO-TEMPLATE',
+      new_fact: { '[UNLABELED]': '' },
+    });
+  };
+
+  const unlabeled = () => {
+    return adding_fact.table_name == 'NO-TEMPLATE';
+  };
+
   const cancelEdit = e => {
     e.preventDefault();
     setAddingFact(null);
@@ -98,9 +109,15 @@ const AddFactForm = ({
         <div className="add-fact-form">
           <div className="add-fact-form__header">
             You can also
-            <button className="add-fact-form__button" onClick={getTemplates}>
-              choose from a template
-            </button>
+            {unlabeled() ? (
+              <button className="add-fact-form__button" onClick={getTemplates}>
+                choose from a template
+              </button>
+            ) : (
+              <button className="add-fact-form__button" onClick={clearLabels}>
+                add one without a template
+              </button>
+            )}
           </div>
           <form onSubmit={handleSubmit}>
             {adding_fact && (
