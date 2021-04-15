@@ -142,15 +142,17 @@ function App() {
           getOverview={getOverview}
         />
       )}
-      <AddFactForm
-        overview={overview}
-        getTemplates={getTemplates}
-        setOverview={setOverview}
-        adding_fact={adding_fact}
-        setAddingFact={setAddingFact}
-        setSuggestions={setSuggestions}
-        setLoading={setLoading}
-      />
+      {adding_fact && (
+        <AddFactForm
+          overview={overview}
+          getTemplates={getTemplates}
+          setOverview={setOverview}
+          adding_fact={adding_fact}
+          setAddingFact={setAddingFact}
+          setSuggestions={setSuggestions}
+          setLoading={setLoading}
+        />
+      )}
       <NoQuestionAlert showAlert={showAlert} setShowAlert={setShowAlert} />
     </div>
   );

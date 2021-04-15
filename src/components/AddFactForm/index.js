@@ -94,9 +94,7 @@ const AddFactForm = ({
 
   return (
     <div className="add-fact-container">
-      <div
-        className={`add-fact-form-container${adding_fact ? '' : '--hidden'}`}
-      >
+      <div>
         <div className="add-fact-form">
           <div className="add-fact-form__header">
             You can also
@@ -172,18 +170,18 @@ const AddFactForm = ({
             </div>
           </form>
         </div>
+        {adding_fact && adding_fact.table_name == 'NO-TEMPLATE' && (
+          <Suggestions
+            suggestions={suggestions}
+            setSuggestions={setSuggestions}
+            setAddingFact={setAddingFact}
+            overview={overview}
+            setOverview={setOverview}
+            loading={suggestionsLoading}
+            setOverviewLoading={setLoading}
+          />
+        )}
       </div>
-      {adding_fact && adding_fact.table_name == 'NO-TEMPLATE' && (
-        <Suggestions
-          suggestions={suggestions}
-          setSuggestions={setSuggestions}
-          setAddingFact={setAddingFact}
-          overview={overview}
-          setOverview={setOverview}
-          loading={suggestionsLoading}
-          setOverviewLoading={setLoading}
-        />
-      )}
     </div>
   );
 };

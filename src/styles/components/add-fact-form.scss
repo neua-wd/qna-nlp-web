@@ -1,18 +1,12 @@
 .add-fact-container {
   z-index: 3;
   position: absolute;
-  top: 200px;
+  top: 0;
   width: 100%;
-}
-
-.add-fact-form-container {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &--hidden {
-    display: none;
-  }
 }
 
 .text-with-mic {

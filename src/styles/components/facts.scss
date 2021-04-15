@@ -67,10 +67,6 @@
     margin-top: 20px;
     overflow: hidden;
 
-    &--hidden {
-      display: none;
-    }
-
     .btn {
       border-width: 1px;
       padding: 10px;
@@ -96,10 +92,6 @@
   &:hover {
     transform: scale(1);
     cursor: default;
-  }
-
-  &--hidden {
-    display: none;
   }
 }
 

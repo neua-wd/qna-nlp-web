@@ -47,7 +47,7 @@ const EditFactForm = ({
     <div className="edit-container">
       <Fragment>
         <form className="form" onSubmit={handleSubmit}>
-          <div className={`fact edit${editing_fact ? '' : '--hidden'}`}>
+          <div className="fact edit">
             {Object.entries(editing_fact).map(([pos, text]) => {
               if (pos != '[SKIP] UID') {
                 return (
@@ -69,11 +69,7 @@ const EditFactForm = ({
               }
             })}
           </div>
-          <div
-            className={`edit edit__button-container${
-              editing_fact ? '' : '--hidden'
-            }`}
-          >
+          <div className="edit edit__button-container">
             <input type="submit" className="btn btn--save" value="Save"></input>
             <button className="btn btn--cancel" onClick={cancelEdit}>
               Cancel
