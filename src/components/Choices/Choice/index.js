@@ -22,6 +22,8 @@ const Choice = ({
   };
 
   const changeAnswer = async letter => {
+    if (letter == overview.answer) return;
+
     setBodyLoading(true);
 
     const res = await axios.patch(
