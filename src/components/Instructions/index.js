@@ -13,8 +13,8 @@ const Instructions = ({ getOverview }) => {
         Hemisphere each night?) <br />
         <br />
         <Search getOverview={getOverview} withForm={true} withDesc={false} />
-      </Card>
-      <Card className="instructions__card">
+        <br />
+        <br />
         Or get a random question
         <Random getOverview={getOverview} withDesc={false} />
       </Card>
