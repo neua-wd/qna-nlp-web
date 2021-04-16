@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import Xarrow from 'react-xarrows';
 
-import '../../../styles/components/facts.scss';
+import '../../styles/components/facts.scss';
 
 const Fact = ({ fact, index, setEditingFact, compact, type, id }) => {
   const fact_ref = useRef(index);

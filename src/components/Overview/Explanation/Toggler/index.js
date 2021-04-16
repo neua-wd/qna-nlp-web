@@ -1,12 +1,12 @@
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-import '../../styles/components/screen-switcher.scss';
+import '../../../../styles/components/toggler.scss';
 
-const Toggler = ({ toggle, inBox }) => {
+const Toggler = ({ toggle }) => {
   return (
     <FormControlLabel
-      className={`screen-switcher ${inBox ? 'screen-switcher--in-box' : ''}`}
+      className="toggler"
       control={<Switch color="primary" />}
       label="Detailed"
       onChange={toggle}

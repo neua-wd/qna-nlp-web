@@ -2,7 +2,7 @@ import Slide from '@material-ui/core/Slide';
 import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
 import { Droppable } from 'react-beautiful-dnd';
 
-import '../../styles/components/bin.scss';
+import '../../../styles/components/bin.scss';
 import { Fragment } from 'react';
 
 const Bin = ({ showBin, setFactInBin }) => {

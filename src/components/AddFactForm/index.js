@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { retrieveSuggestions } from '../../services/suggestion';
 import { addFact } from '../../services/fact';
 
-import Mic from '../Mic';
-import Suggestions from '../Suggestions';
+import Mic from './Mic';
+import Suggestions from './Suggestions';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import '../../styles/components/facts.scss';

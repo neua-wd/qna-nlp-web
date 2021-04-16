@@ -1,13 +1,13 @@
-import Fact from './Fact';
-import CloseButton from '../Actions/CloseButton';
+import Fact from '../../Fact';
+import CloseButton from '../../Actions/CloseButton';
 import Xarrow from 'react-xarrows';
-import Spinner from '../Spinner';
+import Spinner from '../../Spinner';
 
 import { MapInteractionCSS } from 'react-map-interaction';
 
-import '../../styles/components/facts.scss';
+import '../../../styles/components/facts.scss';
 
-const Facts = ({
+const InteractiveMap = ({
   facts,
   setEditingFact,
   hypothesis,
@@ -68,4 +68,4 @@ const Facts = ({
   );
 };
 
-export default Facts;
+export default InteractiveMap;

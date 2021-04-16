@@ -2,10 +2,10 @@ import { Droppable } from 'react-beautiful-dnd';
 import { Slide } from '@material-ui/core';
 
 import Sentence from './Sentence';
-import Fact from '../Facts/Fact';
-import Toggler from '../Toggler';
+import Fact from '../../Fact';
+import Toggler from './Toggler';
 
-import '../../styles/components/explanation.scss';
+import '../../../styles/components/explanation.scss';
 
 import { useState } from 'react';
 
@@ -52,7 +52,7 @@ const Explanation = ({
         elevation={3}
       >
         <div className="explanation__header">
-          <Toggler toggle={toggleDetailed} inBox={true} />
+          <Toggler toggle={toggleDetailed} />
           <div className="explanation__title">
             {current_explanation == 'explanation'
               ? `Explanation (why ${currentLetter()} is correct)`

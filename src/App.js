@@ -5,8 +5,8 @@ import {
 } from './services/overview';
 import { retrieveTemplates } from './services/template';
 
-import Overview from './screens/Overview';
-import Details from './screens/Details';
+import Overview from './components/Overview';
+import Inference from './components/Inference';
 import Actions from './components/Actions';
 import EditFactForm from './components/EditFactForm';
 import AddFactForm from './components/AddFactForm';
@@ -101,7 +101,7 @@ function App() {
         />
       )}
       {showInference && (
-        <Details
+        <Inference
           clearComponents={clearComponents}
           overview={overview}
           setEditingFact={setEditingFact}

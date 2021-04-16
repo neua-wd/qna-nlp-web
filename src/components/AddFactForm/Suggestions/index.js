@@ -1,8 +1,8 @@
-import { addFactToExplanation } from '../../services/overview';
+import { addFactToExplanation } from '../../../services/overview';
 
-import Spinner from '../Spinner';
+import Spinner from '../../Spinner';
 
-import '../../styles/components/suggestions.scss';
+import '../../../styles/components/suggestions.scss';
 
 const Suggestions = ({
   suggestions,

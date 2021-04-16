@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { updateExplanation } from '../../services/overview';
 
-import Question from '../../components/Question';
+import Question from './Question';
 import Choices from '../../components/Choices';
-import Explanation from '../../components/Explanation';
+import Explanation from './Explanation';
 import Spinner from '../../components/Spinner';
 import Instructions from '../../components/Instructions';
-import Bin from '../../components/Bin';
+import Bin from './Bin';
 import DeletionPrompt from '../../components/DeletionPrompt';
 
-import '../../styles/screens/overview.scss';
+import '../../styles/components/overview.scss';
 
 // The Overview screen contains the overview of a particular question
 // Includes the question the choices and the explanation

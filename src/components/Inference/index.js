@@ -1,10 +1,8 @@
-import Question from '../../components/Question';
-import Facts from '../../components/Facts';
-import Spinner from '../../components/Spinner';
+import InteractiveMap from './InteractiveMap';
 
-import '../../styles/screens/details.scss';
+import '../../styles/components/inference.scss';
 
-const Details = ({
+const Inference = ({
   clearComponents,
   overview,
   setEditingFact,
@@ -14,11 +12,11 @@ const Details = ({
 }) => {
   return (
     <div
-      className={`details ${blurred ? 'details--blur' : ''}`}
+      className={`inference ${blurred ? 'inference--blur' : ''}`}
       onClick={clearComponents}
     >
       {overview && (
-        <Facts
+        <InteractiveMap
           hypothesis={overview.answer}
           facts={overview.categorized_explanation}
           setEditingFact={setEditingFact}
@@ -30,4 +28,4 @@ const Details = ({
   );
 };
 
-export default Details;
+export default Inference;
