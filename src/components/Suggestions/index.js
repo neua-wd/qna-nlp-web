@@ -58,7 +58,7 @@ const Suggestions = ({
       <div className="suggestions">
         <div className="suggestions__header">Suggestions</div>
         {loading ? (
-          <Spinner boxed={true} />
+          <Spinner />
         ) : (
           suggestions &&
           suggestions.map(suggestion => {

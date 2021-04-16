@@ -9,6 +9,7 @@ const EditFactForm = ({
   editing_fact,
   setEditingFact,
   getOverview,
+  setLoading,
 }) => {
   const handleChange = e => {
     setEditingFact({ ...editing_fact, [e.target.name]: e.target.value });
@@ -17,11 +18,13 @@ const EditFactForm = ({
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const to_submit = editing_fact;
       setEditingFact(null);
+      setLoading(true);
+
+      const to_submit = editing_fact;
       await apiUpdateFact(to_submit);
 
-      await getOverview(overview.question, true);
+      await getOverview(overview.question);
     } catch (e) {
       setOverview(overview);
       console.log(e);

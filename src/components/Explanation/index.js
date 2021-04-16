@@ -9,7 +9,12 @@ import '../../styles/components/explanation.scss';
 
 import { useState } from 'react';
 
-const Explanation = ({ overview, factInBin, setEditingFact, switchScreen }) => {
+const Explanation = ({
+  overview,
+  factInBin,
+  setEditingFact,
+  toggleInference,
+}) => {
   const [detailed, setDetailed] = useState(false);
   const [mouseOver, setMouseOver] = useState(false);
 
@@ -85,7 +90,7 @@ const Explanation = ({ overview, factInBin, setEditingFact, switchScreen }) => {
       </div>
       {hasDetail() && (
         <Slide direction="left" in={mouseOver}>
-          <div className="view-inference" onClick={switchScreen}>
+          <div className="view-inference" onClick={toggleInference}>
             View inference
           </div>
         </Slide>

@@ -4,8 +4,10 @@ import '../../styles/components/spinner.scss';
 
 const Spinner = ({ boxed }) => {
   return (
-    <div className={`spinner${boxed ? '--boxed' : ''}`}>
-      <CircularProgress />
+    <div className={`spinner ${boxed ? 'spinner--boxed' : ''}`}>
+      <div className="spinner__icon">
+        <CircularProgress />
+      </div>
     </div>
   );
 };

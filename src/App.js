@@ -13,7 +13,7 @@ import './styles/app.scss';
 import './styles/components/actions.scss';
 
 function App() {
-  const [screen, setScreen] = useState('overview');
+  const [showInference, setShowInference] = useState(false);
   const [overview, setOverview] = useState();
   const [editing_fact, setEditingFact] = useState();
   const [adding_fact, setAddingFact] = useState();
@@ -26,11 +26,15 @@ function App() {
     require('dotenv').config();
   }
 
-  const getOverview = async (question, stay_in_details) => {
+  const getOverview = async (question, clear_inference) => {
     setLoading(true);
     let res = { data: {} };
 
     try {
+      if (clear_inference) {
+        setShowInference(false);
+      }
+
       if (question) {
         res = await axios.get(`${process.env.REACT_APP_QNA_NLP_API}/overview`, {
           params: { question },
@@ -48,9 +52,6 @@ function App() {
         setOverview(data);
       }
 
-      if (!stay_in_details) {
-        setScreen('overview');
-      }
       setLoading(false);
     } catch (e) {
       console.log(e);
@@ -74,13 +75,8 @@ function App() {
     }
   };
 
-  const switchScreen = () => {
-    if (screen == 'overview') {
-      setScreen('details');
-    } else {
-      setEditingFact(null);
-      setScreen('overview');
-    }
+  const toggleInference = () => {
+    setShowInference(!showInference);
   };
 
   const clearComponents = () => {
@@ -95,8 +91,8 @@ function App() {
       {overview && (
         <Actions
           getOverview={getOverview}
-          hide_add_fact={screen == 'overview'}
           setAddingFact={setAddingFact}
+          blurred={adding_fact || editing_fact || templates || suggestions}
         />
       )}
       {templates && (
@@ -110,29 +106,35 @@ function App() {
           setLoading={setLoading}
         />
       )}
-      {screen == 'overview' ? (
-        <Overview
-          clearComponents={clearComponents}
-          overview={overview}
-          getOverview={getOverview}
-          setOverview={setOverview}
-          getTemplates={getTemplates}
-          setAddingFact={setAddingFact}
-          setEditingFact={setEditingFact}
-          switchScreen={switchScreen}
-          loading={loading}
-          blurred={adding_fact || editing_fact || templates || suggestions}
-        />
-      ) : (
+      {showInference && (
         <Details
           clearComponents={clearComponents}
           overview={overview}
           setEditingFact={setEditingFact}
-          switchScreen={switchScreen}
-          loading={loading}
+          toggleInference={toggleInference}
+          loading={showInference && loading}
           blurred={adding_fact || editing_fact || templates || suggestions}
         />
       )}
+      <Overview
+        clearComponents={clearComponents}
+        overview={overview}
+        getOverview={getOverview}
+        setOverview={setOverview}
+        getTemplates={getTemplates}
+        setAddingFact={setAddingFact}
+        setEditingFact={setEditingFact}
+        toggleInference={toggleInference}
+        loading={!showInference && loading}
+        blurred={
+          adding_fact ||
+          editing_fact ||
+          templates ||
+          suggestions ||
+          showInference
+        }
+      />
+      )
       {editing_fact && (
         <EditFactForm
           overview={overview}
@@ -142,6 +144,7 @@ function App() {
           adding_fact={adding_fact}
           setAddingFact={setAddingFact}
           getOverview={getOverview}
+          setLoading={setLoading}
         />
       )}
       {adding_fact && (

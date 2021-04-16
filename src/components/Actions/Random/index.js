@@ -10,7 +10,7 @@ const Random = ({ getOverview, withDesc }) => {
     <div>
       <IconButton
         color="primary"
-        onClick={() => getOverview()}
+        onClick={() => getOverview(null, true)}
         onMouseEnter={() => setShowDesc(true)}
         onMouseLeave={() => setShowDesc(false)}
       >

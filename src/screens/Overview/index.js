@@ -20,7 +20,7 @@ const Overview = ({
   getOverview,
   setOverview,
   setEditingFact,
-  switchScreen,
+  toggleInference,
   loading,
   blurred,
 }) => {
@@ -120,7 +120,7 @@ const Overview = ({
                   overview={overview}
                   factInBin={factInBin}
                   setEditingFact={setEditingFact}
-                  switchScreen={switchScreen}
+                  toggleInference={toggleInference}
                 />
               </div>
             )}

@@ -27,16 +27,9 @@ const Fact = ({ fact, index, setEditingFact, compact, type, id }) => {
           end="unification"
           startAnchor="right"
           endAnchor="left"
-          color="rgb(226, 171, 255, 0.75)"
+          color="rgb(226, 171, 255, 0.7)"
         />
       )}
-      <Xarrow
-        start="hypothesis"
-        end="unification"
-        startAnchor="right"
-        endAnchor="left"
-        color="rgb(226, 171, 255, 0.75)"
-      />
       <div
         className={`fact fact--selectable ${compact ? 'fact--compact' : ''}`}
         onClick={e => {

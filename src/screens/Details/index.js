@@ -8,7 +8,7 @@ const Details = ({
   clearComponents,
   overview,
   setEditingFact,
-  switchScreen,
+  toggleInference,
   loading,
   blurred,
 }) => {
@@ -17,20 +17,15 @@ const Details = ({
       className={`details ${blurred ? 'details--blur' : ''}`}
       onClick={clearComponents}
     >
-      {overview &&
-        (loading ? (
-          <Spinner />
-        ) : (
-          <div>
-            <Question question={overview.question} />
-            <Facts
-              hypothesis={overview.answer}
-              facts={overview.categorized_explanation}
-              setEditingFact={setEditingFact}
-              switchScreen={switchScreen}
-            />
-          </div>
-        ))}
+      {overview && (
+        <Facts
+          hypothesis={overview.answer}
+          facts={overview.categorized_explanation}
+          setEditingFact={setEditingFact}
+          toggleInference={toggleInference}
+          loading={loading}
+        />
+      )}
     </div>
   );
 };
