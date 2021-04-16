@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import axios from 'axios';
+import {
+  getOverviewFromQuestion,
+  getRandomOverview,
+} from './services/overview';
+import { retrieveTemplates } from './services/template';
 
 import Overview from './screens/Overview';
 import Details from './screens/Details';
@@ -28,25 +32,19 @@ function App() {
 
   const getOverview = async (question, clear_inference) => {
     setLoading(true);
-    let res = { data: {} };
+
+    if (clear_inference) {
+      setShowInference(false);
+    }
 
     try {
-      if (clear_inference) {
-        setShowInference(false);
-      }
+      const data = question
+        ? await getOverviewFromQuestion(question)
+        : await getRandomOverview();
 
-      if (question) {
-        res = await axios.get(`${process.env.REACT_APP_QNA_NLP_API}/overview`, {
-          params: { question },
-        });
-      } else {
-        res = await axios.get(`${process.env.REACT_APP_QNA_NLP_API}/overview`);
-      }
-
-      if (res.data.error && res.data.error[0] == 'Question does not exist') {
+      if (data.error && data.error[0] == 'Question does not exist') {
         setShowAlert(true);
       } else {
-        const data = res.data;
         data.current_explanation = 'explanation';
 
         setOverview(data);
@@ -60,19 +58,15 @@ function App() {
 
   const getTemplates = async () => {
     setLoading(true);
-
     setAddingFact(null);
 
     try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_QNA_NLP_API}/templates`
-      );
-
-      setTemplates(res.data);
-      setLoading(false);
+      setTemplates(await retrieveTemplates());
     } catch (e) {
       console.log(e);
     }
+
+    setLoading(false);
   };
 
   const toggleInference = () => {

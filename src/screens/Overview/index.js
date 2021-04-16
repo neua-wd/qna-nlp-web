@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { updateExplanation } from '../../services/overview';
 
 import Question from '../../components/Question';
 import Choices from '../../components/Choices';
@@ -66,21 +66,15 @@ const Overview = ({
   };
 
   const updateFacts = async new_facts => {
-    const current_explanation = overview.current_explanation;
+    const { question_id, current_explanation } = overview;
 
-    const res = await axios.patch(
-      `${process.env.REACT_APP_QNA_NLP_API}/overview`,
-      {
-        update_type: 'facts',
-        question_id: overview.question_id,
-        explanation_column: current_explanation,
-        new_facts: new_facts,
-      }
+    const updated_overview = await updateExplanation(
+      question_id,
+      current_explanation,
+      new_facts
     );
 
-    const updated_overview = res.data;
     updated_overview.current_explanation = current_explanation;
-
     setOverview(updated_overview);
   };
 

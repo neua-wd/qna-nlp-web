@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import axios from 'axios';
+import { updateFact } from '../../services/fact';
 
 import '../../styles/components/facts.scss';
 
@@ -17,26 +17,15 @@ const EditFactForm = ({
 
   const handleSubmit = async e => {
     e.preventDefault();
+
     try {
       setEditingFact(null);
       setLoading(true);
 
-      const to_submit = editing_fact;
-      await apiUpdateFact(to_submit);
-
+      await updateFact(editing_fact);
       await getOverview(overview.question);
     } catch (e) {
       setOverview(overview);
-      console.log(e);
-    }
-  };
-
-  const apiUpdateFact = async editing_fact => {
-    try {
-      await axios.put(`${process.env.REACT_APP_QNA_NLP_API}/fact`, {
-        edited_fact: editing_fact,
-      });
-    } catch (e) {
       console.log(e);
     }
   };

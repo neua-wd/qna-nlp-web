@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { updateAnswer } from '../../../services/overview';
 
 import { Slide } from '@material-ui/core';
 
@@ -26,16 +26,7 @@ const Choice = ({
 
     setBodyLoading(true);
 
-    const res = await axios.patch(
-      `${process.env.REACT_APP_QNA_NLP_API}/overview`,
-      {
-        update_type: 'answer',
-        question_id: overview.question_id,
-        new_answer: letter,
-      }
-    );
-
-    const updated_overview = res.data;
+    const updated_overview = await updateAnswer(overview.question_id, letter);
     updated_overview.current_explanation = 'explanation';
 
     setOverview(updated_overview);

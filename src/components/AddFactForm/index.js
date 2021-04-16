@@ -1,11 +1,13 @@
-import axios from 'axios';
+import { useState } from 'react';
+import { retrieveSuggestions } from '../../services/suggestion';
+import { addFact } from '../../services/fact';
+
 import Mic from '../Mic';
 import Suggestions from '../Suggestions';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import '../../styles/components/facts.scss';
 import '../../styles/components/add-fact-form.scss';
-import { useState } from 'react';
 
 const AddFactForm = ({
   overview,
@@ -46,12 +48,8 @@ const AddFactForm = ({
 
   const getSuggestions = async sentence => {
     try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_QNA_NLP_API}/suggestions`,
-        { params: { sentence } }
-      );
+      setSuggestions(await retrieveSuggestions(sentence));
 
-      setSuggestions(res.data);
       setSuggestionsLoading(false);
     } catch (e) {
       console.log(e);
@@ -65,18 +63,10 @@ const AddFactForm = ({
       setAddingFact(null);
       setLoading(true);
 
-      const res = await axios.post(
-        `${process.env.REACT_APP_QNA_NLP_API}/fact`,
-        {
-          table_name: adding_fact.table_name,
-          to_question: overview.question_id,
-          explanation_column: overview.current_explanation,
-          new_fact: adding_fact.new_fact,
-        }
-      );
+      const updated_overview = await addFact(overview, adding_fact);
 
       setOverview({
-        ...res.data,
+        ...updated_overview,
         current_explanation: overview.current_explanation,
       });
 

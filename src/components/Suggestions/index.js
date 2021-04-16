@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { addFactToExplanation } from '../../services/overview';
 
 import Spinner from '../Spinner';
 
@@ -36,19 +36,13 @@ const Suggestions = ({
 
     const current_explanation = overview.current_explanation;
 
-    const res = await axios.patch(
-      `${process.env.REACT_APP_QNA_NLP_API}/overview`,
-      {
-        update_type: 'add fact',
-        question_id: overview.question_id,
-        explanation_column: current_explanation,
-        new_fact_id: fact['[SKIP] UID'],
-      }
+    const updated_overview = await addFactToExplanation(
+      overview.question_id,
+      current_explanation,
+      fact['[SKIP] UID']
     );
 
-    const updated_overview = res.data;
     updated_overview.current_explanation = current_explanation;
-
     setOverview(updated_overview);
     setOverviewLoading(false);
   };
