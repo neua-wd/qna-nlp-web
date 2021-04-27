@@ -51,6 +51,8 @@ function App() {
       }
 
       setLoading(false);
+
+      return data;
     } catch (e) {
       console.log(e);
     }
@@ -128,7 +130,6 @@ function App() {
           showInference
         }
       />
-      )
       {editing_fact && (
         <EditFactForm
           overview={overview}

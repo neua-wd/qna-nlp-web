@@ -1,10 +1,14 @@
 .question {
   display: flex;
   justify-content: center;
+  align-items: center;
 
   &__box {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 21px;
+    min-width: 500px;
     max-width: 1000px;
     padding: 20px;
     background-color: rgba(255, 254, 247);
@@ -15,5 +19,6 @@
 
   &__title {
     font-weight: bold;
+    margin-right: 10px;
   }
 }

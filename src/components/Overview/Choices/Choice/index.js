@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { updateAnswer } from '../../../services/overview';
+import { updateAnswer } from '../../../../services/overview';
 
 import { Slide } from '@material-ui/core';
 
-import '../../../styles/components/choice.scss';
+import '../../../../styles/components/choice.scss';
 
 // A Choice component includes the letter (ie. A/B/C/D) and the sentence
 const Choice = ({

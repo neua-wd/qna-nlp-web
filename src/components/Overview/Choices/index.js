@@ -1,6 +1,6 @@
 import Choice from './Choice';
 
-import '../../styles/components/choices.scss';
+import '../../../styles/components/choices.scss';
 
 // Choices component
 // For each choice (ie. A/B/C/D) renders a choice component

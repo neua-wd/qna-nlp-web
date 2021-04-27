@@ -3,7 +3,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { updateExplanation } from '../../services/overview';
 
 import Question from './Question';
-import Choices from '../../components/Choices';
+import Choices from './Choices';
 import Explanation from './Explanation';
 import Spinner from '../../components/Spinner';
 import Instructions from '../../components/Instructions';
@@ -100,7 +100,7 @@ const Overview = ({
             onDragEnd={result => handleDragEnd(result)}
             onDragStart={() => setShowBin(true)}
           >
-            <Question question={overview.question} />
+            <Question question={overview.question} getOverview={getOverview} />
             {bodyLoading ? (
               <Spinner />
             ) : (
