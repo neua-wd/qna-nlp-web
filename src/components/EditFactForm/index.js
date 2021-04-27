@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react';
-import axios from 'axios';
+import { Fragment } from 'react';
+import { updateFact } from '../../services/fact';
 
 import '../../styles/components/facts.scss';
 
@@ -9,6 +9,7 @@ const EditFactForm = ({
   editing_fact,
   setEditingFact,
   getOverview,
+  setLoading,
 }) => {
   const handleChange = e => {
     setEditingFact({ ...editing_fact, [e.target.name]: e.target.value });
@@ -16,24 +17,15 @@ const EditFactForm = ({
 
   const handleSubmit = async e => {
     e.preventDefault();
-    try {
-      const to_submit = editing_fact;
-      setEditingFact(null);
-      await apiUpdateFact(to_submit);
 
+    try {
+      setEditingFact(null);
+      setLoading(true);
+
+      await updateFact(editing_fact);
       await getOverview(overview.question);
     } catch (e) {
       setOverview(overview);
-      console.log(e);
-    }
-  };
-
-  const apiUpdateFact = async editing_fact => {
-    try {
-      await axios.put(`${process.env.REACT_APP_QNA_NLP_API}/fact`, {
-        edited_fact: editing_fact,
-      });
-    } catch (e) {
       console.log(e);
     }
   };
@@ -44,11 +36,11 @@ const EditFactForm = ({
   };
 
   return (
-    <Fragment>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className={`fact edit${editing_fact ? '' : '--hidden'}`}>
-          {editing_fact &&
-            Object.entries(editing_fact).map(([pos, text]) => {
+    <div className="edit-container">
+      <Fragment>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="fact edit">
+            {Object.entries(editing_fact).map(([pos, text]) => {
               if (pos != '[SKIP] UID') {
                 return (
                   <ul className="fact-part">
@@ -68,19 +60,16 @@ const EditFactForm = ({
                 );
               }
             })}
-        </div>
-        <div
-          className={`edit edit__button-container${
-            editing_fact ? '' : '--hidden'
-          }`}
-        >
-          <input type="submit" className="btn btn--save" value="Save"></input>
-          <button className="btn btn--cancel" onClick={cancelEdit}>
-            Cancel
-          </button>
-        </div>
-      </form>
-    </Fragment>
+          </div>
+          <div className="edit edit__button-container">
+            <input type="submit" className="btn btn--save" value="Save"></input>
+            <button className="btn btn--cancel" onClick={cancelEdit}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </Fragment>
+    </div>
   );
 };
 

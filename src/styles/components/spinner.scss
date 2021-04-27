@@ -1,3 +1,14 @@
 .spinner {
-  margin-top: 200px;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--boxed {
+    margin-bottom: 5%;
+  }
+
+  &__icon {
+    margin: auto;
+  }
 }

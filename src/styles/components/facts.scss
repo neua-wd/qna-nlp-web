@@ -1,24 +1,53 @@
 .facts-container {
+  background-color: rgb(207, 207, 207, 0.7);
+  border-radius: 10px;
+  height: 80%;
+  width: 90%;
+  margin: 30px;
+}
+
+.map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
-  z-index: 2;
+}
+
+.interactive-map {
+  display: flex;
+  align-items: center;
+  height: 600px;
 }
 
 .facts {
-  display: flex;
-  justify-content: center;
   border-radius: 8px;
   font-size: 6px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__abstraction,
+  &__unification {
+    margin-left: 100px;
+  }
+}
+
+.fact-container {
+  // margin: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .fact {
   display: flex;
+  margin-bottom: 20px;
   background-color: #f2f8ff;
   align-items: center;
   border-radius: 8px;
   border-style: solid;
   border-width: 1px;
-  margin: 20px;
   padding: 0;
 
   &--selectable {
@@ -34,17 +63,23 @@
     border: none;
 
     &:hover {
-      transform: scale(1.05);
+      transform: none;
       cursor: pointer;
     }
   }
 }
 
 .form {
-  margin: 0 30px 0 30px;
+  margin: 380px 30px 0 30px;
+}
+
+.edit-container {
+  top: 0;
+  height: 100%;
+  width: 100%;
   z-index: 3;
-  position: relative;
-  bottom: 60%;
+  position: absolute;
+  align-items: center;
 }
 
 .edit {
@@ -60,10 +95,6 @@
     justify-content: center;
     margin-top: 20px;
     overflow: hidden;
-
-    &--hidden {
-      display: none;
-    }
 
     .btn {
       border-width: 1px;
@@ -91,10 +122,6 @@
     transform: scale(1);
     cursor: default;
   }
-
-  &--hidden {
-    display: none;
-  }
 }
 
 .fact-part {
@@ -105,9 +132,18 @@
   padding: 0;
   margin: 5px;
 
+  &--small {
+    font-size: xx-small;
+  }
+
   &__column-name {
+    font-size: small;
     text-align: center;
     white-space: nowrap;
+
+    &--small {
+      font-size: xx-small;
+    }
   }
 
   &__text {
@@ -126,4 +162,13 @@
 
 .full-width {
   width: 100%;
+}
+
+.hypothesis {
+  padding: 2px;
+  width: 120px;
+  background-color: rgba(255, 254, 247);
+  border-radius: 6px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }

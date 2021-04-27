@@ -1,0 +1,16 @@
+.overview {
+  margin-top: 120px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  overflow: hidden;
+  font-family: Geneva, Verdana, sans-serif;
+
+  &--blurred {
+    opacity: 0.6;
+    filter: blur(10px);
+  }
+}

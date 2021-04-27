@@ -1,19 +1,24 @@
 .question {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  align-items: center;
 
   &__box {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 21px;
+    min-width: 500px;
     max-width: 1000px;
     padding: 20px;
     background-color: rgba(255, 254, 247);
     border-radius: 6px;
-    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+      0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
   }
 
   &__title {
     font-weight: bold;
+    margin-right: 10px;
   }
 }

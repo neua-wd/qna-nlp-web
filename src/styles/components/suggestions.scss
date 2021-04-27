@@ -1,0 +1,39 @@
+.suggestions-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 30px 10px 30px;
+}
+
+.suggestions {
+  text-align: center;
+  align-items: center;
+  width: 600px;
+  background-color: rgb(63, 81, 181, 0.3);
+  border-radius: 8px;
+  padding-bottom: 10px;
+  height: 470px;
+
+  &__header {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: large;
+    font-weight: bold;
+  }
+
+  &__item {
+    list-style-type: none;
+    margin: auto;
+    padding: 0 5px 0 5px;
+    border-radius: 6px;
+    width: fit-content;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+      background-color: rgb(63, 81, 181, 0.3);
+      box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+        0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    }
+  }
+}

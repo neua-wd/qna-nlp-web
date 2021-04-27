@@ -24,7 +24,7 @@ const Search = ({ getOverview, withForm, withDesc }) => {
   const onSubmit = e => {
     e.preventDefault();
     setShowForm(false);
-    getOverview(question);
+    getOverview(question, true);
   };
 
   return (

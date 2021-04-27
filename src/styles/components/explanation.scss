@@ -1,5 +1,11 @@
+.explanation-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  overflow: hidden;
+}
+
 .explanation {
-  margin-top: 10px;
   width: 800px;
   border-radius: 6px;
   overflow-y: scroll;
@@ -30,7 +36,7 @@
   }
 
   &__body {
-    padding: 0 40px 40px 40px;
+    padding: 10px 40px 0 40px;
   }
 
   &__sentence-box {
@@ -44,7 +50,7 @@
     width: fit-content;
     height: fit-content;
     align-items: center;
-    margin-top: 10px;
+    margin-bottom: 10px;
 
     &:hover,
     &:active {
@@ -59,4 +65,16 @@
 
     cursor: pointer;
   }
+}
+
+.view-inference {
+  position: absolute;
+  right: 200px;
+  background-color: rgba(73, 252, 3, 0.4);
+  width: fit-content;
+  margin: auto;
+  padding: 5px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 9px #c4c4c4;
+  cursor: pointer;
 }

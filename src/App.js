@@ -1,21 +1,23 @@
 import { useState } from 'react';
-import axios from 'axios';
+import {
+  getOverviewFromQuestion,
+  getRandomOverview,
+} from './services/overview';
+import { retrieveTemplates } from './services/template';
 
-import Overview from './screens/Overview';
-import Details from './screens/Details';
-import ScreenSwitcher from './components/ScreenSwitcher';
+import Overview from './components/Overview';
+import Inference from './components/Inference';
 import Actions from './components/Actions';
 import EditFactForm from './components/EditFactForm';
 import AddFactForm from './components/AddFactForm';
 import NewFactTemplates from './components/NewFactTemplates';
-import Suggestions from './components/Suggestions';
 import NoQuestionAlert from './components/NoQuestionAlert';
 
 import './styles/app.scss';
 import './styles/components/actions.scss';
 
 function App() {
-  const [screen, setScreen] = useState('overview');
+  const [showInference, setShowInference] = useState(false);
   const [overview, setOverview] = useState();
   const [editing_fact, setEditingFact] = useState();
   const [adding_fact, setAddingFact] = useState();
@@ -28,29 +30,29 @@ function App() {
     require('dotenv').config();
   }
 
-  const getOverview = async question => {
+  const getOverview = async (question, clear_inference) => {
     setLoading(true);
-    let res = { data: {} };
+
+    if (clear_inference) {
+      setShowInference(false);
+    }
 
     try {
-      if (question) {
-        res = await axios.get(`${process.env.REACT_APP_QNA_NLP_API}/overview`, {
-          params: { question },
-        });
-      } else {
-        res = await axios.get(`${process.env.REACT_APP_QNA_NLP_API}/overview`);
-      }
+      const data = question
+        ? await getOverviewFromQuestion(question)
+        : await getRandomOverview();
 
-      if (res.data.error && res.data.error[0] == 'Question does not exist') {
+      if (data.error && data.error[0] == 'Question does not exist') {
         setShowAlert(true);
       } else {
-        const data = res.data;
         data.current_explanation = 'explanation';
 
         setOverview(data);
       }
 
       setLoading(false);
+
+      return data;
     } catch (e) {
       console.log(e);
     }
@@ -58,28 +60,19 @@ function App() {
 
   const getTemplates = async () => {
     setLoading(true);
-
     setAddingFact(null);
 
     try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_QNA_NLP_API}/templates`
-      );
-
-      setTemplates(res.data);
-      setLoading(false);
+      setTemplates(await retrieveTemplates());
     } catch (e) {
       console.log(e);
     }
+
+    setLoading(false);
   };
 
-  const switchScreen = () => {
-    if (screen == 'overview') {
-      setScreen('details');
-    } else {
-      setEditingFact(null);
-      setScreen('overview');
-    }
+  const toggleInference = () => {
+    setShowInference(!showInference);
   };
 
   const clearComponents = () => {
@@ -91,12 +84,11 @@ function App() {
 
   return (
     <div className="app">
-      {overview && <ScreenSwitcher toggle={switchScreen} />}
       {overview && (
         <Actions
           getOverview={getOverview}
-          hide_add_fact={screen == 'overview'}
           setAddingFact={setAddingFact}
+          blurred={adding_fact || editing_fact || templates || suggestions}
         />
       )}
       {templates && (
@@ -110,53 +102,57 @@ function App() {
           setLoading={setLoading}
         />
       )}
-      {suggestions && (
-        <Suggestions
-          suggestions={suggestions}
+      {showInference && (
+        <Inference
+          clearComponents={clearComponents}
+          overview={overview}
+          setEditingFact={setEditingFact}
+          toggleInference={toggleInference}
+          loading={showInference && loading}
+          blurred={adding_fact || editing_fact || templates || suggestions}
+        />
+      )}
+      <Overview
+        clearComponents={clearComponents}
+        overview={overview}
+        getOverview={getOverview}
+        setOverview={setOverview}
+        getTemplates={getTemplates}
+        setAddingFact={setAddingFact}
+        setEditingFact={setEditingFact}
+        toggleInference={toggleInference}
+        loading={!showInference && loading}
+        blurred={
+          adding_fact ||
+          editing_fact ||
+          templates ||
+          suggestions ||
+          showInference
+        }
+      />
+      {editing_fact && (
+        <EditFactForm
+          overview={overview}
+          setOverview={setOverview}
+          editing_fact={editing_fact}
+          setEditingFact={setEditingFact}
+          adding_fact={adding_fact}
+          setAddingFact={setAddingFact}
+          getOverview={getOverview}
+          setLoading={setLoading}
+        />
+      )}
+      {adding_fact && (
+        <AddFactForm
+          overview={overview}
+          getTemplates={getTemplates}
+          setOverview={setOverview}
+          adding_fact={adding_fact}
           setAddingFact={setAddingFact}
           setSuggestions={setSuggestions}
+          setLoading={setLoading}
         />
       )}
-      {screen == 'overview' ? (
-        <Overview
-          clearComponents={clearComponents}
-          overview={overview}
-          getOverview={getOverview}
-          setOverview={setOverview}
-          getTemplates={getTemplates}
-          setAddingFact={setAddingFact}
-          setEditingFact={setEditingFact}
-          switchScreen={switchScreen}
-          loading={loading}
-          blurred={adding_fact || editing_fact || templates || suggestions}
-        />
-      ) : (
-        <Details
-          clearComponents={clearComponents}
-          overview={overview}
-          setEditingFact={setEditingFact}
-          loading={loading}
-          blurred={adding_fact || editing_fact || templates || suggestions}
-        />
-      )}
-      <EditFactForm
-        overview={overview}
-        setOverview={setOverview}
-        editing_fact={editing_fact}
-        setEditingFact={setEditingFact}
-        adding_fact={adding_fact}
-        setAddingFact={setAddingFact}
-        getOverview={getOverview}
-      />
-      <AddFactForm
-        overview={overview}
-        getTemplates={getTemplates}
-        setOverview={setOverview}
-        adding_fact={adding_fact}
-        setAddingFact={setAddingFact}
-        setSuggestions={setSuggestions}
-        setLoading={setLoading}
-      />
       <NoQuestionAlert showAlert={showAlert} setShowAlert={setShowAlert} />
     </div>
   );

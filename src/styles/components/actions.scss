@@ -1,10 +1,18 @@
 .actions {
+  position: absolute;
+  z-index: 3;
   display: flex;
+  justify-content: center;
   align-items: center;
+  width: 100%;
   margin-top: 15px;
-  margin-left: 20px;
   background: none;
   box-shadow: none;
+
+  &--blur {
+    opacity: 0.6;
+    filter: blur(10px);
+  }
 }
 
 .description {
@@ -14,8 +22,8 @@
   background-color: rgb(63, 81, 181, 0.3);
   padding: 6px;
   font-size: 14px;
-  color: #3F51B5;
-  border-color: #3F51B5;
+  color: #3f51b5;
+  border-color: #3f51b5;
   border-width: 1px;
   border-style: solid;
 
@@ -27,6 +35,7 @@
 .get-question {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-right: 15px;
 
   &__icon {
@@ -48,10 +57,15 @@
 
 .add-fact {
   display: flex;
-  align-items: center;
 
   &:hover {
     transform: scale(1.2);
     cursor: pointer;
   }
+}
+
+.close {
+  width: fit-content;
+  height: fit-content;
+  float: right;
 }
